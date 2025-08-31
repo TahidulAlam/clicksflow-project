@@ -58,7 +58,6 @@ const Caps = () => (
   <DataList
     data={payoutCapData}
     columns={payoutCapColumns}
-    addLinkLabel="+ Add Cap Rule"
     showSearchBar={true}
     showColumnToggle={true}
     showfilter={true}

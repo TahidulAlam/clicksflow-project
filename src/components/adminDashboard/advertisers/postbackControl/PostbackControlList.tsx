@@ -90,7 +90,6 @@ const PostbackControlList = () => (
   <DataList
     data={data}
     columns={columns}
-    addLinkLabel="+ Add Postback Control"
   />
 );
 

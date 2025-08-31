@@ -100,7 +100,6 @@ const AdjustmentList = () => {
       <DataList
         data={adjustmentData}
         columns={adjustmentColumns}
-        addLinkLabel="+ Add Adjustment"
       />
 
       <AdjustmentModal

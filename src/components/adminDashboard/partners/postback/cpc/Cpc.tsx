@@ -40,7 +40,6 @@ const CPC = () => {
     <DataList
       data={cpcData}
       columns={cpcColumns}
-      addLinkLabel="+ Add CPC"
       // emptyMessage="Data not found."
     />
   );

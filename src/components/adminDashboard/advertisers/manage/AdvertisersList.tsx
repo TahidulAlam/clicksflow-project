@@ -77,7 +77,6 @@ const AdvertisersList = () => (
   <DataList
     data={advertisersData}
     columns={advertisersColumns}
-    addLinkLabel="+ Add Advertiser"
   />
 );
 

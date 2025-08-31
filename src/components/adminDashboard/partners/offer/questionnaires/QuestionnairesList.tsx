@@ -82,7 +82,6 @@ const QuestionnairesList = () => (
   <DataList
     data={questionnairesData}
     columns={questionnairesColumns}
-    addLinkLabel="+ Add Questionnaire"
   />
 );
 

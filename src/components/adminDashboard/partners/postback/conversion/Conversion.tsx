@@ -78,7 +78,6 @@ const Conversion = () => {
     <DataList
       data={conversionData}
       columns={conversionColumns}
-      addLinkLabel="+ Add Pixel"
     />
   );
 };

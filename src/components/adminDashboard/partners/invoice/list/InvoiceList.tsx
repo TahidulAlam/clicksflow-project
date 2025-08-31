@@ -1122,7 +1122,6 @@ const InvoiceList = () => {
       <DataList
         data={InvoiceListData}
         columns={adjustmentColumns}
-        addLinkLabel="+ Add Adjustment"
       />
     </>
   );

@@ -99,7 +99,6 @@ const EmailTemplate = () => {
       data={labelData}
       columns={labelColumns}
       showLinkButton={true}
-      addLinkLabel="Global Notification Template"
       showSearchBar={false}
       showColumnToggle={false}
       showfilter={false}

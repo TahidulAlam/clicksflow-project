@@ -61,7 +61,6 @@ const LandingPage = () => (
   <DataList
     data={payoutDestinationData}
     columns={payoutDestinationColumns}
-    addLinkLabel="+ Add Redirect Rule"
     showColumnToggle={true}
     showSearchBar={true}
     showfilter={false}

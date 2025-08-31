@@ -40,7 +40,6 @@ const Event = () => {
     <DataList
       data={eventData}
       columns={eventColumns}
-      addLinkLabel="+ Add Event"
       // emptyMessage="Data not found."
     />
   );

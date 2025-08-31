@@ -175,7 +175,6 @@ const OfferGroup = () => {
         data={categoryData}
         columns={categoryColumns}
         addLink="/admin/offers/group/add"
-        addLinkLabel="+ Add Category"
         showLinkButton={true}
         showSearchBar={true}
         showColumnToggle={true}

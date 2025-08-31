@@ -134,7 +134,6 @@ const AdvertisersInvoiceList = () => {
       <DataList
         data={InvoiceListData}
         columns={invoiceColumns}
-        addLinkLabel="+ Add Invoice"
       />
     </>
   );

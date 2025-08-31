@@ -78,7 +78,6 @@ const ApplicationList = () => (
   <DataList
     data={applicationData}
     columns={applicationColumns}
-    addLinkLabel="+ Add Application"
   />
 );
 

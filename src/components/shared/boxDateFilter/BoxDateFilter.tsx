@@ -456,7 +456,6 @@ const BoxDateFilter = () => {
         <DataList
           data={InvoiceListData}
           columns={invoiceColumns}
-          addLinkLabel="+ Add Invoice"
         />
       </div>
     </div>

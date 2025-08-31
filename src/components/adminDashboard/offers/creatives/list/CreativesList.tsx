@@ -56,7 +56,6 @@ const CreativesList = () => (
     // title="Traffic Controls"
     data={data}
     columns={columns}
-    addLinkLabel="+ Add Creative"
     showSearchBar={true}
     showColumnToggle={true}
     addLink="/admin/offers/creative/add"

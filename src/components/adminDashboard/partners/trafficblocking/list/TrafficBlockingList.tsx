@@ -100,7 +100,6 @@ const TrafficBlockingList = () => (
   <DataList
     data={trafficBlockingData}
     columns={trafficBlockingColumns}
-    addLinkLabel="+ Add Traffic Block"
   />
 );
 

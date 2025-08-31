@@ -35,7 +35,6 @@ const SmartLinkList: React.FC = () => {
         data={labelData}
         columns={columns}
         addLink="/admin/offers/smart-link/add"
-        addLinkLabel="+ Add Offer group"
         showLinkButton={true}
         showSearchBar={true}
         showColumnToggle={true}

@@ -1012,7 +1012,6 @@ const Creative = () => (
   <DataList
     data={creativeData}
     columns={creativeColumns}
-    addLinkLabel="+ Add Creative"
     showColumnToggle={true}
     showSearchBar={true}
     showfilter={false}

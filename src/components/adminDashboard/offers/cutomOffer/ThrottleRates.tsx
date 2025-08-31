@@ -70,7 +70,6 @@ const ThrottleRates = () => (
   <DataList
     data={payoutThrottleData}
     columns={payoutThrottleColumns}
-    addLinkLabel="+ Add Throttle Rule"
     showSearchBar={true}
     showColumnToggle={true}
     showfilter={true}

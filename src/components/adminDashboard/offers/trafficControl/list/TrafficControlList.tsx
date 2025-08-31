@@ -493,7 +493,6 @@ const TrafficControlList = () => (
     // title="Traffic Controls"
     data={trafficData}
     columns={trafficColumns}
-    addLinkLabel="+ Add Traffic Control"
     showColumnToggle={true}
     showSearchBar={true}
     showfilter={true}

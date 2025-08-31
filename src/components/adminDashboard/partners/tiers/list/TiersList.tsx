@@ -72,7 +72,6 @@ const TiersList = () => {
       <DataList
         data={data}
         columns={columns}
-        addLinkLabel="+ Add Application"
       />
     </div>
   );

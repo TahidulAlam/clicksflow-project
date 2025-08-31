@@ -62,7 +62,6 @@ const KycList = () => (
   <DataList
     data={kycData}
     columns={kycColumns}
-    // addLinkLabel="+ Add KYC"
   />
 );
 

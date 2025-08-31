@@ -60,7 +60,6 @@ const PaymentMethodList = () => (
   <DataList
     data={paymentMethodData}
     columns={paymentMethodColumns}
-    // addLinkLabel="+ Add Payment Method"
   />
 );
 

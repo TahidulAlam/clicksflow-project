@@ -66,7 +66,6 @@ const DefaultNotificationSettings = () => {
       showLinkButton={true}
       addLinkIcon={<BsGlobeCentralSouthAsia />}
       addLink="/admin/control-center/configuration/notification-templates"
-      addLinkLabel="Global Notification Template"
       showSearchBar={false}
       showColumnToggle={false}
       showfilter={false}

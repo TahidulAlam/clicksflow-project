@@ -473,7 +473,6 @@ const AddLandingPage = () => {
     <DataList
       data={payoutData}
       columns={payoutColumns}
-      addLinkLabel="+ Add New"
       showSearchBar={true}
       showColumnToggle={true}
       showfilter={true}

@@ -65,7 +65,6 @@ const AdvertiserKycPending = () => (
   <DataList
     data={data}
     columns={columns}
-    addLinkLabel="+ Add Advertiser"
 
   />
 );

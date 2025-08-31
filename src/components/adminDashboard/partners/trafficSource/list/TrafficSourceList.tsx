@@ -53,7 +53,6 @@ const TrafficSourceList = () => {
         data={data}
         columns={columns}
         // emptyMessage="Data not found"
-        addLinkLabel="+ Add Traffic Source"
       />
     </div>
   );

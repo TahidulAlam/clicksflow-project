@@ -79,7 +79,6 @@ const ManageList = () => (
   <DataList
     data={partnerData}
     columns={partnerColumns}
-    addLinkLabel="+ Add Partner"
   />
 );
 
