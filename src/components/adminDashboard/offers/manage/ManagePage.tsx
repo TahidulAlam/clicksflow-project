@@ -316,7 +316,6 @@ const ManagePage = () => {
         showfilter={true}
         filterLabel="All"
         enableRowSelection={true}
-        selectFilterLabel="Change Status"
       />
     </div>
   );
