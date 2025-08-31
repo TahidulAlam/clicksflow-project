@@ -51,7 +51,7 @@ const columns: Column<{
   ];
 
 const AdvertiserKycVerified = () => (
-  <DataList data={data} columns={columns} addLinkLabel="+ Add Advertiser" />
+  <DataList data={data} columns={columns} />
 );
 
 export default AdvertiserKycVerified;
