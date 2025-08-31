@@ -63,7 +63,6 @@ const KycList = () => (
     data={kycData}
     columns={kycColumns}
     // addLinkLabel="+ Add KYC"
-    onAddClick={() => console.log("Add KYC")}
   />
 );
 

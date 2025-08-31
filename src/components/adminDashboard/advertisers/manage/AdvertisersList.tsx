@@ -78,7 +78,6 @@ const AdvertisersList = () => (
     data={advertisersData}
     columns={advertisersColumns}
     addLinkLabel="+ Add Advertiser"
-    onAddClick={() => console.log("Add advertiser")}
   />
 );
 

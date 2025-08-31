@@ -457,7 +457,6 @@ const BoxDateFilter = () => {
           data={InvoiceListData}
           columns={invoiceColumns}
           addLinkLabel="+ Add Invoice"
-          onAddClick={() => console.log("Add invoice")}
         />
       </div>
     </div>

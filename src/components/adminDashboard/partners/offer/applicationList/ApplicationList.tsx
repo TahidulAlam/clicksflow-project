@@ -79,7 +79,6 @@ const ApplicationList = () => (
     data={applicationData}
     columns={applicationColumns}
     addLinkLabel="+ Add Application"
-    onAddClick={() => console.log("Add application")}
   />
 );
 

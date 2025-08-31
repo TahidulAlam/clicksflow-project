@@ -83,7 +83,6 @@ const QuestionnairesList = () => (
     data={questionnairesData}
     columns={questionnairesColumns}
     addLinkLabel="+ Add Questionnaire"
-    onAddClick={() => console.log("Add new questionnaire")}
   />
 );
 

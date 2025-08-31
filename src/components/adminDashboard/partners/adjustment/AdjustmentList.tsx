@@ -101,7 +101,6 @@ const AdjustmentList = () => {
         data={adjustmentData}
         columns={adjustmentColumns}
         addLinkLabel="+ Add Adjustment"
-        onAddClick={() => setIsEventModalOpen(true)}
       />
 
       <AdjustmentModal

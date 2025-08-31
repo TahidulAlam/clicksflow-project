@@ -75,7 +75,6 @@ const AdvertiserKycVerified = () => (
     data={data}
     columns={columns}
     addLinkLabel="+ Add Advertiser"
-    onAddClick={() => console.log("Add new advertiser")}
   />
 );
 

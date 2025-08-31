@@ -73,7 +73,6 @@ const TiersList = () => {
         data={data}
         columns={columns}
         addLinkLabel="+ Add Application"
-        onAddClick={() => console.log("Add application")}
       />
     </div>
   );

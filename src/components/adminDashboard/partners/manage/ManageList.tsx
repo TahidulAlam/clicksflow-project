@@ -80,7 +80,6 @@ const ManageList = () => (
     data={partnerData}
     columns={partnerColumns}
     addLinkLabel="+ Add Partner"
-    onAddClick={() => console.log("Add partner")}
   />
 );
 

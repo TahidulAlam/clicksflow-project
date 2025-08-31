@@ -54,7 +54,6 @@ const TrafficSourceList = () => {
         columns={columns}
         // emptyMessage="Data not found"
         addLinkLabel="+ Add Traffic Source"
-        onAddClick={() => console.log("Add traffic source")}
       />
     </div>
   );

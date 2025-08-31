@@ -101,7 +101,6 @@ const TrafficBlockingList = () => (
     data={trafficBlockingData}
     columns={trafficBlockingColumns}
     addLinkLabel="+ Add Traffic Block"
-    onAddClick={() => console.log("Add traffic block")}
   />
 );
 
