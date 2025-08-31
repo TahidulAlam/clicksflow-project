@@ -7,7 +7,7 @@ interface Column {
   header: string;
   accessor: string;
   searchable?: boolean;
-  fixed?: "left" | "right" | string | undefined;
+  fixed?: string | undefined;
   width?: string;
   cell?: (row: any) => React.ReactNode;
   headerClassName?: string;
