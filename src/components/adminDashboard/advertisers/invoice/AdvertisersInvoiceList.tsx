@@ -135,7 +135,6 @@ const AdvertisersInvoiceList = () => {
         data={InvoiceListData}
         columns={invoiceColumns}
         addLinkLabel="+ Add Invoice"
-        onAddClick={() => console.log("Add invoice")}
       />
     </>
   );

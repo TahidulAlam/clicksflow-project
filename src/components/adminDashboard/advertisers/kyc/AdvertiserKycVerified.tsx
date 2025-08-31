@@ -71,12 +71,7 @@ const columns: Column[] = [
 ];
 
 const AdvertiserKycVerified = () => (
-  <DataList
-    data={data}
-    columns={columns}
-    addLinkLabel="+ Add Advertiser"
-    onAddClick={() => console.log("Add new advertiser")}
-  />
+  <DataList data={data} columns={columns} addLinkLabel="+ Add Advertiser" />
 );
 
 export default AdvertiserKycVerified;

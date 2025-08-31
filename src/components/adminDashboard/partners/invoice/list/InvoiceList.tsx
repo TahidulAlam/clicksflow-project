@@ -1123,7 +1123,6 @@ const InvoiceList = () => {
         data={InvoiceListData}
         columns={adjustmentColumns}
         addLinkLabel="+ Add Adjustment"
-        onAddClick={() => console.log("Add adjustment")}
       />
     </>
   );

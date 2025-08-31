@@ -316,7 +316,7 @@ const ManagePage = () => {
         showfilter={true}
         filterLabel="All"
         enableRowSelection={true}
-        selectFilterLabel="Change Status"
+        pageSizeOptions={[5, 10, 20, 50, 100]}
       />
     </div>
   );

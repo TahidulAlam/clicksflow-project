@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import DataList from "@/components/shared/dataTable/DataList";
 
@@ -430,7 +431,6 @@ const payoutData = [
   },
 ];
 
-
 const payoutColumns: Column[] = [
   {
     header: "ID",
@@ -466,10 +466,11 @@ const payoutColumns: Column[] = [
     fixed: "right",
     width: "100px",
   },
-]
+];
 
 const AddLandingPage = () => {
-  return <DataList
+  return (
+    <DataList
       data={payoutData}
       columns={payoutColumns}
       addLinkLabel="+ Add New"
@@ -479,7 +480,8 @@ const AddLandingPage = () => {
       pageSizeOptions={[5, 10, 20]}
       addLink="/admin/offers/custom-setting/payout-revenue/add"
       showLinkButton={true}
-    />;
+    />
+  );
 };
 
 export default AddLandingPage;
