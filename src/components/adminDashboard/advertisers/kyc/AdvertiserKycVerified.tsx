@@ -3,16 +3,17 @@
 
 import DataList from "@/components/shared/dataTable/DataList";
 
-interface Column {
+interface Column<T = any> {
   header: string;
-  accessor: string;
+  accessor: keyof T;
   searchable?: boolean;
-  fixed?: string | undefined;
+  fixed?: "left" | "right";
   width?: string;
-  cell?: (row: any) => React.ReactNode;
+  cell?: (row: T) => React.ReactNode;
   headerClassName?: string;
   cellClassName?: string;
 }
+
 
 const data = [
   {
@@ -33,42 +34,21 @@ const data = [
   },
 ];
 
-const columns: Column[] = [
-  {
-    header: "ID",
-    accessor: "id",
-    searchable: true,
-    fixed: "left",
-    width: "60px",
-  },
-  {
-    header: "Name",
-    accessor: "name",
-    searchable: true,
-  },
-  {
-    header: "Registered at",
-    accessor: "registeredAt",
-    searchable: false,
-  },
-  {
-    header: "Modified at",
-    accessor: "modifiedAt",
-    searchable: false,
-  },
-  {
-    header: "KYC Status",
-    accessor: "kycStatus",
-    searchable: true,
-  },
-  {
-    header: "Action",
-    accessor: "action",
-    searchable: false,
-    fixed: "right",
-    width: "100px",
-  },
-];
+const columns: Column<{
+  id: number;
+  name: string;
+  registeredAt: string;
+  modifiedAt: string;
+  kycStatus: string;
+  action: string;
+}>[] = [
+    { header: "ID", accessor: "id", searchable: true, fixed: "left", width: "60px" },
+    { header: "Name", accessor: "name", searchable: true },
+    { header: "Registered at", accessor: "registeredAt", searchable: false },
+    { header: "Modified at", accessor: "modifiedAt", searchable: false },
+    { header: "KYC Status", accessor: "kycStatus", searchable: true },
+    { header: "Action", accessor: "action", searchable: false, fixed: "right", width: "100px" },
+  ];
 
 const AdvertiserKycVerified = () => (
   <DataList data={data} columns={columns} addLinkLabel="+ Add Advertiser" />
