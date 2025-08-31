@@ -41,7 +41,6 @@ const Event = () => {
       data={eventData}
       columns={eventColumns}
       addLinkLabel="+ Add Event"
-      onAddClick={() => console.log("Add Event")}
       // emptyMessage="Data not found."
     />
   );

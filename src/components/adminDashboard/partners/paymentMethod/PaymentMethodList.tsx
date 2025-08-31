@@ -61,7 +61,6 @@ const PaymentMethodList = () => (
     data={paymentMethodData}
     columns={paymentMethodColumns}
     // addLinkLabel="+ Add Payment Method"
-    onAddClick={() => console.log("Add payment method")}
   />
 );
 

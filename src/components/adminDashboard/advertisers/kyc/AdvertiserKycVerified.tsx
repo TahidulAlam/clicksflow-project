@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+("use client");
 
 import DataList from "@/components/shared/dataTable/DataList";
 

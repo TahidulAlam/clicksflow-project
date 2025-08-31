@@ -41,7 +41,6 @@ const CPC = () => {
       data={cpcData}
       columns={cpcColumns}
       addLinkLabel="+ Add CPC"
-      onAddClick={() => console.log("Add CPC")}
       // emptyMessage="Data not found."
     />
   );

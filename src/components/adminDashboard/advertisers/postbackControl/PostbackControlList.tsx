@@ -91,7 +91,6 @@ const PostbackControlList = () => (
     data={data}
     columns={columns}
     addLinkLabel="+ Add Postback Control"
-    onAddClick={() => console.log("Add new postback control")}
   />
 );
 

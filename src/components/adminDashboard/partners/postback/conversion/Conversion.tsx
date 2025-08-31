@@ -79,7 +79,6 @@ const Conversion = () => {
       data={conversionData}
       columns={conversionColumns}
       addLinkLabel="+ Add Pixel"
-      onAddClick={() => console.log("Add Pixel")}
     />
   );
 };
