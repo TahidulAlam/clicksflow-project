@@ -74,8 +74,13 @@ const PayoutRevenue = () => (
   <DataList
     data={payoutData}
     columns={payoutColumns}
-    addLinkLabel="+ Add Payout Rule"
-    onAddClick={() => console.log("Add payout rule")}
+    addLinkLabel="+ Add New"
+    showSearchBar={true}
+    showColumnToggle={true}
+    showfilter={true}
+    pageSizeOptions={[5, 10, 20]}
+    addLink="/admin/offers/custom-setting/payout-revenue/add"
+    showLinkButton={true}
   />
 );
 

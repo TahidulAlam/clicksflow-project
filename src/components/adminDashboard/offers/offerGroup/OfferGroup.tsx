@@ -1,46 +1,34 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useMemo, useState, useRef, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import PrimaryBtn from "@/components/shared/buttons/PrimaryBtn";
-import DataTable from "@/components/shared/dataTable/DataTable";
-import SearchBar from "@/components/shared/dataTable/SearchBar";
 
+import React from "react";
+import DataList from "@/components/shared/dataTable/DataList";
+import MultiLevelDropdown from "@/components/shared/dropdown/MultiLevelDropdown";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaFilter } from "react-icons/fa";
-import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
+import toast from "react-hot-toast";
 
-interface Offer {
-  id: number;
-  name: string;
-  advertiser: string;
-  offers: number;
-  todaysClicks: number;
-  todaysConversions: number;
-  dailyPayoutCap: number;
-  dailyRevenueCap: number;
-  dailyClickCap: number;
-  dailyConversionCap: number;
-  weeklyPayoutCap: number;
-  weeklyRevenueCap: number;
-  weeklyClickCap: number;
-  weeklyConversionCap: number;
-  monthlyPayoutCap: number;
-  monthlyRevenueCap: number;
-  monthlyClickCap: number;
-  monthlyConversionCap: number;
-  globalPayoutCap: number;
-  globalRevenueCap: number;
-  globalClickCap: number;
-  globalConversionCap: number;
-  created: string;
-  modified: string;
-  action: string;
-  [key: string]: unknown;
+interface Column {
+  header: string;
+  accessor: string;
+  searchable?: boolean;
+  sortable?: boolean;
+  fixed?: "left" | "right";
+  width?: string;
+  cell?: (row: any) => React.ReactNode;
 }
 
-const data: Offer[] = [
+interface MenuItem {
+  label: string | React.ReactNode;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  labelHeader?: string;
+  children?: MenuItem[];
+  content?: React.ReactNode;
+}
+
+const categoryData = [
   {
-    id: 13,
+    id: 1,
     name: "Leptozan - SS - Diet Supplement - TSL & VSL - [US, CA, AU, NZ]",
     advertiser: "Test ADV (EF) (1)",
     offers: 0,
@@ -68,7 +56,7 @@ const data: Offer[] = [
   },
 ];
 
-const columns = [
+const categoryColumns: Column[] = [
   {
     header: "ID",
     accessor: "id",
@@ -151,154 +139,47 @@ const columns = [
   {
     header: "Action",
     accessor: "action",
-    sortable: false,
-    width: "100px",
-    fixed: "right" as const,
+    fixed: "right",
+    cell: (row) => {
+      const menuItems: MenuItem[] = [
+        {
+          label: "Edit",
+          icon: <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />,
+          onClick: () => toast.success(`Edit clicked for ID: ${row.id}`),
+        },
+      ];
+
+      return (
+        <div className="z-50">
+          <MultiLevelDropdown
+            label={
+              <>
+                <BsThreeDotsVertical />
+              </>
+            }
+            labelClass="text-sm font-bold border-none shadow-none -z-10 bg-none"
+            position="bottom-right"
+            menuClassName="z-50"
+            menuItems={menuItems}
+          />
+        </div>
+      );
+    },
   },
 ];
 
 const OfferGroup = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setShowDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>(
-    () =>
-      columns.reduce((acc, col) => {
-        acc[col.accessor] = true;
-        return acc;
-      }, {} as Record<string, boolean>)
-  );
-
-  const toggleColumnVisibility = (accessor: string) => {
-    setVisibleColumns((prev) => ({
-      ...prev,
-      [accessor]: !prev[accessor],
-    }));
-  };
-
-  const filteredData = useMemo(() => {
-    if (!searchTerm.trim()) return data;
-    return data.filter((row) =>
-      columns.some((col) => {
-        if (!col.searchable) return false;
-        const value = row[col.accessor as keyof Offer];
-        return String(value).toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    );
-  }, [searchTerm]);
-
-  const visibleCols = useMemo(
-    () => columns.filter((col) => visibleColumns[col.accessor]),
-    [visibleColumns]
-  );
-
-  const {
-    formState: { isSubmitting, isLoading },
-  } = useForm({
-    defaultValues: {
-      forceSSL: false,
-    },
-  });
-
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex gap-2">
-          <PrimaryBtn size="md">+ Add Offer</PrimaryBtn>
-          <PrimaryBtn size="md">Active</PrimaryBtn>
-        </div>
-        <div className="flex items-center gap-2 relative">
-          <SearchBar
-            value={searchTerm}
-            onChange={setSearchTerm}
-            placeholder="Search offers..."
-          />
-          <PrimaryBtn size="lg">
-            <FaFilter />
-          </PrimaryBtn>
-
-          <div className="relative" ref={dropdownRef}>
-            <PrimaryBtn
-              size="lg"
-              onClick={() => setShowDropdown(!showDropdown)}
-            >
-              <BsThreeDotsVertical />
-            </PrimaryBtn>
-
-            {showDropdown && (
-              <div className="absolute right-0 top-12 z-50 bg-white shadow-lg border rounded-md p-4 w-72 max-h-96 overflow-y-auto">
-                <div>
-                  <h4 className="font-semibold mb-3">Toggle Columns</h4>
-                  <button
-                    onClick={() =>
-                      setVisibleColumns(
-                        columns.reduce(
-                          (
-                            acc: Record<string, boolean>,
-                            col: { accessor: string }
-                          ) => {
-                            acc[col.accessor] = true;
-                            return acc;
-                          },
-                          {} as Record<string, boolean>
-                        )
-                      )
-                    }
-                    className="text-sm font-medium text-blue-600 hover:underline self-start"
-                  >
-                    Restore All
-                  </button>
-                </div>
-                <div className="flex flex-col gap-2 mt-2">
-                  {columns.map((col: { header: string; accessor: string }) => (
-                    <div
-                      key={col.accessor}
-                      className="flex justify-between items-center text-sm"
-                    >
-                      <span>{col.header}</span>
-                      <ToggleSwitch
-                        size="sm"
-                        checked={visibleColumns[col.accessor]}
-                        onChange={() => toggleColumnVisibility(col.accessor)}
-                        disabled={isSubmitting || isLoading}
-                        aria-label={`Toggle ${col.header}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <DataTable
-        data={
-          filteredData.map((offer) => ({ ...offer })) as Record<
-            string,
-            unknown
-          >[]
-        }
-        columns={visibleCols}
-        defaultSortField="name"
-        defaultSortOrder="asc"
+    <div className="p-4">
+      <DataList
+        data={categoryData}
+        columns={categoryColumns}
+        addLink="/admin/offers/group/add"
+        addLinkLabel="+ Add Category"
+        showLinkButton={true}
+        showSearchBar={true}
+        showColumnToggle={true}
+        showfilter={true}
       />
     </div>
   );

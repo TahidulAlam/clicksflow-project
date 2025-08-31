@@ -25,12 +25,12 @@ const TabbedCard: React.FC<TabbedCardProps> = ({
     <Tabs
       className={`bg-white p-4 border border-gray-300 rounded-xl ${className}`}
     >
-      <TabList className="flex gap-2 md:overflow-x-scroll lg:overflow-auto">
+      <TabList className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent pb-2">
         {tabs.map(({ id, title }) => (
           <Tab
             key={id}
-            className="focus:outline-none px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer bg-white"
-            selectedClassName="bg-[#1E3557] text-white rounded-lg"
+            className="focus:outline-none px-3 py-1 text-sm border-2 border-gray-300 rounded-lg cursor-pointer transition-colors whitespace-nowrap text-gray-500"
+            selectedClassName="bg-[#1E3557] text-white border-[#1E3557]"
           >
             <div className="flex items-center">
               {showId && <span className="mr-1">{id}.</span>}

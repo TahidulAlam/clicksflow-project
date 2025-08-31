@@ -13,9 +13,9 @@ import TextAreaInput from "@/components/shared/forms/TextAreaInput";
 // Form validation schema
 const UICustomizationGeneralSchema = z.object({
   htmlCustomFooter: z.string().min(1, "Method is required"),
-  showPartnerSignUpLink: z.boolean().optional(),
-  showAdvertiserSignUpLink: z.boolean().optional(),
-  showClicksFlowSupportLink: z.boolean().optional(),
+  isShowPartnerSignUpLinkEnabled: z.boolean().optional(),
+  isShowAdvertiserSignUpLinkEnabled: z.boolean().optional(),
+  isShowClicksFlowSupportLinkEnabled: z.boolean().optional(),
 });
 
 type FormType = z.infer<typeof UICustomizationGeneralSchema>;
@@ -40,9 +40,9 @@ const UICustomizationGeneral: React.FC<UICustomizationGeneralProps> = ({
         schema={UICustomizationGeneralSchema}
         defaultValues={{
           htmlCustomFooter: `<p style="color:#fff;">Revsbill</p>`,
-          showPartnerSignUpLink: false,
-          showAdvertiserSignUpLink: false,
-          showClicksFlowSupportLink: false,
+          isShowPartnerSignUpLinkEnabled: false,
+          isShowAdvertiserSignUpLinkEnabled: false,
+          isShowClicksFlowSupportLinkEnabled: false,
         }}
         onSubmit={handleSubmit}
       >

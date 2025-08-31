@@ -818,6 +818,7 @@ interface DataListProps<T = Record<string, unknown>> {
   data?: T[];
   columns?: Column<T>[];
   addLinkLabel?: string;
+  addLinkIcon?: React.ReactNode;
   addLink?: string;
   showLinkButton?: boolean;
   showSearchBar?: boolean;
@@ -895,6 +896,7 @@ const DataList = <T extends Record<string, unknown>>({
   showSearchBar = true,
   showColumnToggle = true,
   visibleColumns,
+  addLinkIcon,
   onVisibleColumnsChange,
   columnSearchQuery = "",
   onColumnSearchChange,
@@ -1305,7 +1307,7 @@ const DataList = <T extends Record<string, unknown>>({
           <div className="text-center">
             <Link
               href={addLink}
-              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm"
+              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300"
             >
               {addLinkLabel}
             </Link>
@@ -1326,10 +1328,15 @@ const DataList = <T extends Record<string, unknown>>({
           {showLinkButton && addLink && (
             <Link
               href={addLink}
-              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm"
+              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300 text-gray-700 "
               aria-label={addLinkLabel}
             >
-              {addLinkLabel}
+              {addLinkIcon && (
+                <>
+                  <span className="text-md p-1">{addLinkIcon}</span>
+                </>
+              )}
+              <span>{addLinkLabel}</span>
             </Link>
           )}
           {showfilter && (

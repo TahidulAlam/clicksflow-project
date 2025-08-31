@@ -59,7 +59,12 @@ const Caps = () => (
     data={payoutCapData}
     columns={payoutCapColumns}
     addLinkLabel="+ Add Cap Rule"
-    onAddClick={() => console.log("Add cap rule")}
+    showSearchBar={true}
+    showColumnToggle={true}
+    showfilter={true}
+    pageSizeOptions={[5, 10, 20]}
+    addLink="/admin/offers/custom-setting/caps/add"
+    showLinkButton={true}
   />
 );
 

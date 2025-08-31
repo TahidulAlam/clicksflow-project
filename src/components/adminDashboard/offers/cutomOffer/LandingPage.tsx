@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -61,7 +62,10 @@ const LandingPage = () => (
     data={payoutDestinationData}
     columns={payoutDestinationColumns}
     addLinkLabel="+ Add Redirect Rule"
-    onAddClick={() => console.log("Add redirect rule")}
+    showColumnToggle={true}
+    showSearchBar={true}
+    showfilter={false}
+    addLink="/admin/offers/traffic-control/add"
   />
 );
 

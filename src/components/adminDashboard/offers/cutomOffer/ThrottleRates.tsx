@@ -71,7 +71,12 @@ const ThrottleRates = () => (
     data={payoutThrottleData}
     columns={payoutThrottleColumns}
     addLinkLabel="+ Add Throttle Rule"
-    onAddClick={() => console.log("Add throttle rule")}
+    showSearchBar={true}
+    showColumnToggle={true}
+    showfilter={true}
+    pageSizeOptions={[5, 10, 20]}
+    addLink="/admin/offers/custom-setting/throttle-rate/add"
+    showLinkButton={true}
   />
 );
 

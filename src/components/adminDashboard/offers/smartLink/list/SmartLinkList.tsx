@@ -34,10 +34,12 @@ const SmartLinkList: React.FC = () => {
       <DataList
         data={labelData}
         columns={columns}
+        addLink="/admin/offers/smart-link/add"
+        addLinkLabel="+ Add Offer group"
         showLinkButton={true}
         showSearchBar={true}
-        showColumnToggle={false}
-        showfilter={false}
+        showColumnToggle={true}
+        showfilter={true}
         pageSizeOptions={[5, 10, 20]}
       />
     </div>

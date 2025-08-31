@@ -243,7 +243,6 @@ const EmailTemplateEdit: React.FC<EmailTemplateEditProps> = ({
 
   return (
     <Container maxWidth="full">
-      {/* Shortcodes table (if provided) */}
       {groups.length > 0 && (
         <div className="space-y-6 mb-6">
           {groups.map((group, idx) => (

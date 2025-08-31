@@ -14,6 +14,8 @@ import PartnerKycSettings from "./partnerKycSettings/PartnerKycSettings";
 import SignUpSettings from "./signUp/SignUpSettings";
 import SeoSettings from "./seoSettings/SeoSettings";
 import EmailTemplate from "./emailTemplate/EmailTemplate";
+import DefaultNotificationSettings from "./defaultNotificationSettings/DefaultNotificationSettings";
+import BillingSettings from "./billingSettings/BillingSettings";
 
 interface ConfigTab {
   id: number;
@@ -57,9 +59,9 @@ const configTabs: ConfigTab[] = [
   {
     id: 13,
     title: "Default Notification",
-    component: <div>Default Notification Settings</div>,
+    component: <DefaultNotificationSettings />,
   },
-  { id: 14, title: "Billing", component: <div>Billing Settings</div> },
+  { id: 14, title: "Billing", component: <BillingSettings /> },
   { id: 15, title: "API", component: <div>API Settings</div> },
 ];
 

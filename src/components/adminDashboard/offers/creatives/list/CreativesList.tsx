@@ -56,8 +56,10 @@ const CreativesList = () => (
     // title="Traffic Controls"
     data={data}
     columns={columns}
-    addLinkLabel="+ Add Traffic Control"
-    onAddClick={() => console.log("Add new rule")}
+    addLinkLabel="+ Add Creative"
+    showSearchBar={true}
+    showColumnToggle={true}
+    addLink="/admin/offers/creative/add"
   />
 );
 
