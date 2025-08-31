@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import BoxAccordion, {
@@ -135,7 +135,7 @@ const AdvertisersInvoiceList = () => {
         data={InvoiceListData}
         columns={invoiceColumns}
         addLinkLabel="+ Add Invoice"
-        onAddClick={() => console.log("Add invoice")}
+{/*         onAddClick={() => console.log("Add invoice")} */}
       />
     </>
   );
