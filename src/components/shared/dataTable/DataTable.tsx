@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 // import React, { useMemo, useState, useRef, useCallback } from "react";
@@ -513,7 +514,7 @@ const DataTable = <T extends Record<string, unknown>>({
 
   const headerKeys = useMemo(
     () => visibleColumns.map((c, i) => buildStableKey(c, i)),
-    [visibleColumns]
+    [visibleColumns, buildStableKey]
   );
 
   const columnMap = useMemo(
