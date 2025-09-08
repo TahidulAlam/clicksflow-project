@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
 :root {
   --font-sans: var(--font-lato);
@@ -12,7 +12,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* or override default font stack */
+or override default font stack
 
 @theme inline {
   --color-background: var(--background);
@@ -27,34 +27,34 @@ body {
 }
 @theme {
   --font-display: "lato", "sans-serif";
-  /* --scrollbar-thumb-color: #52525b;
+  --scrollbar-thumb-color: #52525b;
   --scrollbar-track-color: #27272a;
-  --scrollbar-width: 12px; */
+  --scrollbar-width: 12px;
 }
 
-/* .scrollbar-custom {
+.scrollbar-custom {
   scrollbar-width: auto;
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-} */
+}
 
-/* .scrollbar-custom::-webkit-scrollbar {
+.scrollbar-custom::-webkit-scrollbar {
   width: var(--scrollbar-width);
-} */
+}
 
-/* .scrollbar-custom::-webkit-scrollbar-track {
+.scrollbar-custom::-webkit-scrollbar-track {
   background: var(--scrollbar-track-color);
-} */
+}
 
-/* .scrollbar-custom::-webkit-scrollbar-thumb {
+.scrollbar-custom::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-color);
   border-radius: 6px;
   border: 2px solid var(--scrollbar-track-color);
-} */
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* --background: #0a0a0a; */
-    /* --foreground: #ededed; */
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
@@ -62,4 +62,65 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+@import "tailwindcss";
+
+/* ===========================
+   Font Variables (from next/font)
+   =========================== */
+:root {
+  --font-sans: var(--font-lato);       /* Lato as default */
+  --font-mono: var(--font-geist-mono); /* Geist Mono */
+}
+
+/* ===========================
+   Base Styling
+   =========================== */
+body {
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ===========================
+   Tailwind Theme Overrides
+   =========================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-lato);        /* Lato = default */
+  --font-alt: var(--font-geist-sans);   /* optional secondary font */
+  --font-mono: var(--font-geist-mono);
+}
+
+@plugin 'tailwind-scrollbar';
+
+/* ===========================
+   Scrollbar Styling
+   =========================== */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Optional extra theme vars */
+@theme {
+  --font-display: "Lato", "sans-serif";
+  /* --scrollbar-thumb-color: #52525b;
+  --scrollbar-track-color: #27272a;
+  --scrollbar-width: 12px; */
+}
+
+/* ===========================
+   Dark Mode (if needed)
+   =========================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --background: #0a0a0a; */
+    /* --foreground: #ededed; */
+  }
 }

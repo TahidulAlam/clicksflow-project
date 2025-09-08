@@ -305,20 +305,18 @@ const categoryColumns: Column[] = [
 ];
 const ManagePage = () => {
   return (
-    <div className="p-4">
-      <DataList
-        data={categoryData}
-        columns={categoryColumns}
-        showLinkButton={true}
-        addLink="/admin/offers/add"
-        showSearchBar={true}
-        showColumnToggle={true}
-        showfilter={true}
-        filterLabel="All"
-        enableRowSelection={true}
-        pageSizeOptions={[5, 10, 20, 50, 100]}
-      />
-    </div>
+    <DataList
+      data={categoryData}
+      columns={categoryColumns}
+      showLinkButton={true}
+      addLink="/admin/offers/add"
+      showSearchBar={true}
+      showColumnToggle={true}
+      showfilter={true}
+      filterLabel="All"
+      enableRowSelection={true}
+      pageSizeOptions={[5, 10, 20, 50, 100]}
+    />
   );
 };
 
