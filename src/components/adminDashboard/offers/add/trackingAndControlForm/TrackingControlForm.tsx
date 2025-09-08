@@ -361,7 +361,6 @@ const TrackingControlForm = () => {
               errors={errors}
               isSubmitting={isSubmitting}
               isLoading={isLoading}
-              selectedStatus={status}
               options={visibilityStatus}
               fieldName="status"
               aria-required="true"

@@ -21,6 +21,7 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 import Link from "next/link";
+import DataListSkeleton from "../skeleton/DataListSkeleton";
 
 interface Column<T = Record<string, unknown>> {
   header: string;
@@ -498,12 +499,7 @@ const DataList = <T extends Record<string, unknown>>({
   }, []);
 
   if (isLoading) {
-    return (
-      <div className={`space-y-4 ${className}`}>
-        {title && <h2 className="text-xl font-semibold">{title}</h2>}
-        <div className="text-gray-500 text-center py-8">Loading data...</div>
-      </div>
-    );
+    return <DataListSkeleton rows={10} columns={columns.length || 5} />;
   }
 
   if (error) {

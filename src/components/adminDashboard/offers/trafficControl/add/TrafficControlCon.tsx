@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
@@ -105,7 +106,6 @@ const TrafficControlCon: React.FC<SmartLinkAddGeneralProps> = ({
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
                 options={visibilityStatus}
-                selectedStatus={watch("status")}
               />
 
               <TagsInput

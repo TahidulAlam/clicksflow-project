@@ -265,7 +265,7 @@ const Container: React.FC<ContainerProps> = ({
   maxWidth = "2xl",
   padding = "p-6",
   className,
-  mainClassName = "bg-white rounded-md border border-gray-300 pt-2",
+  mainClassName = "bg-[#F2F7FD] rounded-md border border-gray-300 pt-2",
 }) => {
   const resolvedMaxWidth = maxWidthMap[maxWidth];
 

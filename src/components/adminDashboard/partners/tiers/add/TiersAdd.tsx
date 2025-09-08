@@ -114,7 +114,6 @@ const FormContent = React.memo(function FormContent({
         isSubmitting={isSubmitting}
         isLoading={isLoading}
         options={VISIBILITY_STATUS}
-        selectedStatus={watch("status")}
       />
 
       <FlexRow cols={{ base: 2 }}>

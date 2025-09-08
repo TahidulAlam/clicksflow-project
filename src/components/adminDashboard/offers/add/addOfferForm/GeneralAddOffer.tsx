@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -36,6 +37,11 @@ const currencyOptions = [
   { value: "ANG", label: "Netherlands Antillean Guilder (ANG)" },
   { value: "AOA", label: "Angolan Kwanza (AOA)" },
 ];
+const statusOptions = [
+  { value: "active", label: "Active", dotColor: "bg-green-500" },
+  { value: "pending", label: "Pending", dotColor: "bg-yellow-400" },
+  { value: "paused", label: "Paused", dotColor: "bg-orange-600" },
+];
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
@@ -67,7 +73,6 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
   onSubmitSuccess,
   isLoading = false,
 }) => {
-  // Initialize useForm at the top level to access watch
   const methods = useForm<FormType>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -93,7 +98,6 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
   const { watch } = methods;
   const image = watch("image");
 
-  // Move useState hooks to the top level
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [toggle, setToggle] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -101,7 +105,6 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
   const [isCgModalOpen, setIsCgModalOpen] = useState(false);
 
-  // Move useEffect to the top level, depending on image
   useEffect(() => {
     if (image instanceof File) {
       const url = URL.createObjectURL(image);
@@ -187,11 +190,11 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
               <StatusSelector
                 label="Status"
                 fieldName="status"
+                options={statusOptions}
                 setValue={setValue}
                 errors={errors}
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
-                selectedStatus={status}
               />
 
               <div className="flex gap-4">

@@ -79,7 +79,7 @@
 //   const [toggle, setToggle] = useState(false);
 
 //   const image = watch("image");
-//   const selectedStatus = watch("status");
+//
 //   const [tags, setTags] = useState<string[]>([]);
 //   const [inputValue, setInputValue] = useState("");
 

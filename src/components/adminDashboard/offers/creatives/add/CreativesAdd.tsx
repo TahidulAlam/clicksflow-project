@@ -80,7 +80,6 @@ const CreativesAdd: React.FC<CreativesAddProps> = ({
     },
   });
 
-  const selectedStatus = watch("status");
   const selectedType = watch("type");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -120,7 +119,6 @@ const CreativesAdd: React.FC<CreativesAddProps> = ({
           isSubmitting={isSubmitting}
           isLoading={isLoading}
           options={visibilityStatus}
-          selectedStatus={selectedStatus}
         />
         <div className="flex gap-2">
           <div className="w-1/5">

@@ -150,7 +150,7 @@ interface ImageUploaderProps<T extends FieldValues> {
 
 function ImageUploader<T extends FieldValues>({
   name,
-  label = "Upload Image",
+  label = "Drag and drop or Upload",
   className = "",
   imagePreview,
   required = false,
@@ -196,7 +196,7 @@ function ImageUploader<T extends FieldValues>({
       </label>
 
       <div
-        className="w-full h-[250px] flex flex-col items-center justify-center relative border-2 border-dashed border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+        className="w-full h-[250px] flex flex-col items-center justify-center relative border-2 border-dashed border-gray-300 rounded-lg  hover:bg-gray-50 transition-colors"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
@@ -214,15 +214,15 @@ function ImageUploader<T extends FieldValues>({
             <h3 className="mt-2 text-sm font-medium text-gray-900">
               <span>{label}</span>
               <br />
-              <span className="text-indigo-600">Drag & drop</span> or{" "}
-              <span className="underline">browse</span>
+              {/* <span className="text-indigo-600">Drag & drop</span> or{" "}
+              <span className="underline">Upload</span> */}
             </h3>
-            <p className="mt-1 text-xs text-gray-500">
+            {/* <p className="mt-1 text-xs text-gray-500">
               PNG, JPG, GIF up to 10MB
-            </p>
+            </p> */}
             <div className="mt-4 p-2 bg-[#1E3557] text-white rounded-md inline-flex items-center gap-2">
               <ImUpload3 size={20} />
-              <span>Upload</span>
+              {/* <span>Upload</span> */}
             </div>
           </div>
         )}

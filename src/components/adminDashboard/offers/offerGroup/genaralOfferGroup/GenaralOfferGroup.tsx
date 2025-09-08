@@ -64,7 +64,7 @@ const GenaralOfferGroup: React.FC<GenarelOfferGroup> = ({
       tags: [],
     },
   });
-  const selectedStatus = watch("status");
+
   const [inputValue, setInputValue] = useState("");
   const onSubmit: SubmitHandler<FormData> = async () => {
     try {
@@ -101,7 +101,6 @@ const GenaralOfferGroup: React.FC<GenarelOfferGroup> = ({
           isSubmitting={isSubmitting}
           isLoading={isLoading}
           options={visibilityStatus}
-          selectedStatus={selectedStatus}
         />
         <div className="flex gap-2">
           <div className="w-1/2">

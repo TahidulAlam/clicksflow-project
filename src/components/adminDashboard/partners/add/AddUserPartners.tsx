@@ -101,7 +101,7 @@ const AddUserPartners: React.FC<AddUserPartnersProps> = ({
             watch,
             formState: { errors, isSubmitting },
           } = methods;
-          const selectedStatus = watch("status");
+
           const selectedCountryValue = watch("country");
 
           const selectedCountry = countryOptions.find(
@@ -157,7 +157,6 @@ const AddUserPartners: React.FC<AddUserPartnersProps> = ({
                           isLoading={isLoading}
                           // required
                           options={verifyStatus}
-                          selectedStatus={selectedStatus}
                         />
                         <FlexRow
                           cols={{ base: 1, sm: 1, md: 2, lg: 2, xl: 2 }}
@@ -292,7 +291,7 @@ const AddUserPartners: React.FC<AddUserPartnersProps> = ({
                                       onChange={(e) =>
                                         setPassword(e.target.value)
                                       }
-                                      className="w-full border rounded px-3 py-2 pr-10 border-gray-300 rounded-md transition-shadow focus:outline-none focus:ring-0 focus:shadow-md"
+                                      className="w-full border rounded px-3 py-2 pr-10 border-gray-300 transition-shadow focus:outline-none focus:ring-0 focus:shadow-md"
                                       placeholder="Generated Password"
                                     />
                                     <button

@@ -100,7 +100,7 @@ const GenarelAddForm: React.FC<GenarelAddFormProps> = ({
   const [inputValue, setInputValue] = useState("");
   const [url, setUrl] = useState("");
   const image = watch("image");
-  const selectedStatus = watch("status");
+
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
   const [isCgModalOpen, setIsCgModalOpen] = useState(false);
   useEffect(() => {
@@ -164,7 +164,6 @@ const GenarelAddForm: React.FC<GenarelAddFormProps> = ({
           errors={errors}
           isSubmitting={isSubmitting}
           isLoading={isLoading}
-          selectedStatus={selectedStatus}
         />
 
         <div className="flex gap-4">

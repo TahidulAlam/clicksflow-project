@@ -130,7 +130,6 @@ const TrafficBlockingAdd: React.FC<TrafficBlockingAddProps> = ({
                   isSubmitting={isSubmitting}
                   isLoading={isLoading}
                   options={visibilityStatus}
-                  selectedStatus={watch("status")}
                 />
 
                 {/* Offer */}

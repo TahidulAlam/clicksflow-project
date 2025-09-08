@@ -71,7 +71,6 @@ const CreativesModal: React.FC<CreativesModalProps> = ({
     defaultValues: defaultData,
   });
 
-  const selectedStatus = watch("status");
   // Removed unused variable 'selectedType'
 
   useEffect(() => {
@@ -123,7 +122,6 @@ const CreativesModal: React.FC<CreativesModalProps> = ({
           isSubmitting={isSubmitting}
           isLoading={isLoading}
           options={visibilityStatus}
-          selectedStatus={selectedStatus}
         />
         <div className="">
           <ToggleSwitch

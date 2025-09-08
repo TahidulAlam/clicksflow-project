@@ -126,7 +126,6 @@ const PostbackControlGenarel: React.FC<PostbackControlGenarelProps> = ({
                   label="Status"
                   fieldName="status"
                   options={visibilityStatus}
-                  selectedStatus={watch("status")}
                   setValue={setValue}
                   errors={errors}
                   isSubmitting={isSubmitting}

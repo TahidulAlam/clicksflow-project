@@ -99,9 +99,6 @@ const GenPartners: React.FC<PartnersGeneralProps> = ({
             formState: { errors, isSubmitting },
           } = methods;
 
-          const selectedStatus = watch("status");
-          const selectedKYCStatus = watch("kycstatus");
-
           return (
             <>
               <TextInput
@@ -121,7 +118,6 @@ const GenPartners: React.FC<PartnersGeneralProps> = ({
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
                 options={visibilityStatus}
-                selectedStatus={selectedStatus}
               />
 
               <div className="flex gap-5 w-full">
@@ -215,7 +211,6 @@ const GenPartners: React.FC<PartnersGeneralProps> = ({
                 isLoading={isLoading}
                 // required
                 options={verifyStatus}
-                selectedStatus={selectedKYCStatus}
               />
 
               {/* Tags Input with Controller */}

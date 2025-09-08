@@ -83,7 +83,6 @@ const TrafficControlGen: React.FC<TrafficControlGenProps> = ({
             formState: { errors, isSubmitting },
           } = methods;
 
-          const selectedStatus = watch("status");
           const selectedOffers = watch("offers");
 
           return (
@@ -114,7 +113,6 @@ const TrafficControlGen: React.FC<TrafficControlGenProps> = ({
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
                 options={visibilityStatus}
-                selectedStatus={selectedStatus}
               />
 
               <Controller

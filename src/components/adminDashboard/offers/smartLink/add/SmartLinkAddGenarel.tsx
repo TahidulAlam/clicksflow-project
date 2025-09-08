@@ -92,7 +92,6 @@ const SmartLinkAddGeneral: React.FC<SmartLinkAddGeneralProps> = ({
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
                 options={visibilityStatus}
-                selectedStatus={watch("status")}
               />
 
               <TagsInput
