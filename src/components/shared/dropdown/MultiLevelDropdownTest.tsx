@@ -521,7 +521,6 @@ const DropdownItemComponent = React.memo(
       []
     );
 
-    // Cleanup debounce on unmount
     useEffect(() => {
       return () => debouncedSearch.cancel();
     }, [debouncedSearch]);
@@ -562,7 +561,6 @@ const DropdownItemComponent = React.memo(
         } else if (e.key === "ArrowRight" && item.children) {
           setOpenPath((prev) => [...prev.slice(0, depth), index]);
         } else if (e.key === "ArrowLeft") {
-          // Close current submenu
           setOpenPath((prev) => [...prev.slice(0, depth)]);
         } else if (e.key === "Escape") {
           closeAllMenus();
