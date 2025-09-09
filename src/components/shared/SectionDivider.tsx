@@ -10,7 +10,7 @@ interface SectionDividerProps {
 
 const SectionDivider: React.FC<SectionDividerProps> = ({
   label,
-  backgroundClass = "bg-white",
+  backgroundClass = "bg-[#F2F7FD]",
   border = false,
   padding = "py-6 px-0",
 }) => {
@@ -27,7 +27,7 @@ const SectionDivider: React.FC<SectionDividerProps> = ({
       <div className="border-t border-gray-300 w-full"></div>
 
       {/* Center label */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 py-1 rounded-md text-xs text-gray-700 border border-gray-300">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#F2F7FD] px-3 py-1 rounded-md text-xs text-gray-700 border border-gray-300">
         {label}
       </div>
     </div>

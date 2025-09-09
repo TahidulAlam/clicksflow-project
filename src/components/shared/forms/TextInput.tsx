@@ -122,7 +122,7 @@ const TextInput = <T extends FieldValues>({
                 showColorPreview
               />
             ) : (
-              <div className="text-gray-900 bg-gray-200 px-3 rounded-l-md h-[38px] flex items-center">
+              <div className="text-gray-900 bg-gray-200 px-3 rounded-l-md lg:h-[30px] h-[30px] flex items-center">
                 {inputLeftIcon}
               </div>
             )}
@@ -141,7 +141,7 @@ const TextInput = <T extends FieldValues>({
             aria-invalid={!!error}
             aria-describedby={error ? `${inputId}-error` : undefined}
             aria-label={ariaLabel || label}
-            className={`w-full h-[38px] border rounded-md transition-shadow duration-200
+            className={`w-full lg:h-[30px] h-[30px] border rounded-md transition-shadow duration-200
               focus:outline-none focus:ring-0 focus:shadow-md
               ${hasLeftIcon ? "pl-12" : "pl-3"}
               ${hasRightIcon ? "pr-10" : "pr-3"}
@@ -159,7 +159,7 @@ const TextInput = <T extends FieldValues>({
             aria-invalid={!!error}
             aria-describedby={error ? `${inputId}-error` : undefined}
             aria-label={ariaLabel || label}
-            className={`w-full h-[38px] border rounded-md transition-shadow duration-200
+            className={`w-full lg:h-[30px] h-[30px] border rounded-md transition-shadow duration-200
               focus:outline-none focus:ring-0 focus:shadow-md
               ${hasLeftIcon ? "pl-12" : "pl-3"}
               ${hasRightIcon ? "pr-10" : "pr-3"}
@@ -169,7 +169,7 @@ const TextInput = <T extends FieldValues>({
         )}
 
         {hasRightIcon && (
-          <div className="absolute inset-y-0 right-0 flex items-center text-gray-900 bg-gray-200 h-[38px] px-2 rounded-r-md">
+          <div className="absolute inset-y-0 right-0 flex items-center text-gray-900 bg-gray-200 lg:h-[30px] h-[30px] px-2 rounded-r-md">
             {inputRightIcon}
           </div>
         )}

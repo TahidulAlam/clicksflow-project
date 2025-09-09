@@ -1,70 +1,3 @@
-// import React from "react";
-// import {
-//   FieldErrors,
-//   UseFormRegister,
-//   FieldValues,
-//   Path,
-// } from "react-hook-form";
-
-// interface TextAreaInputProps<T extends FieldValues> {
-//   id?: string;
-//   name: Path<T>;
-//   label: string;
-//   className?: string;
-//   register: UseFormRegister<T>;
-//   errors: FieldErrors<T>;
-//   disabled?: boolean;
-//   required?: boolean;
-//   placeholder?: string;
-//   rows?: number;
-//   defaultValue?: string;
-// }
-
-// const TextAreaInput = <T extends FieldValues>({
-//   id,
-//   name,
-//   label,
-//   className,
-//   register,
-//   errors,
-//   disabled = false,
-//   required = false,
-//   placeholder = "",
-//   rows = 4,
-//   defaultValue = "",
-// }: TextAreaInputProps<T>) => {
-//   const error = errors[name];
-
-//   return (
-//     <div className="flex flex-col gap-2">
-//       <label
-//         htmlFor={id || name}
-//         className="text-xs font-semibold text-gray-800"
-//       >
-//         {label} {required && <span className="text-red-700">*</span>}
-//       </label>
-//       <textarea
-//         id={id || name}
-//         placeholder={placeholder}
-//         {...register(name)}
-//         defaultValue={defaultValue}
-//         rows={rows}
-//         className={`p-2 border rounded-md ${className || ""} ${
-//           error
-//             ? "border-red-500"
-//             : "border-gray-300 focus:outline-none focus:ring-0 focus:shadow-md"
-//         }`}
-//         disabled={disabled}
-//       />
-//       {error && (
-//         <p className="text-red-500 text-sm">{error.message?.toString()}</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default TextAreaInput;
-
 "use client";
 
 import React, { useState, useMemo, useCallback } from "react";
@@ -115,25 +48,20 @@ const TextAreaInput = <T extends FieldValues>({
   error: externalError,
   ariaLabel,
 }: TextAreaInputProps<T>) => {
-  // Optional form context for react-hook-form
   const formContext = useFormContext<T>();
   const isRHFControlled = !!name && (!!formContext || !!externalRegister);
 
-  // Internal state for fully uncontrolled mode
   const [internalValue, setInternalValue] = useState(defaultValue);
 
-  // Determine if externally controlled
   const isExternallyControlled =
     externalValue !== undefined && externalOnChange !== undefined;
 
-  // Get current value based on mode
   const currentValue = isExternallyControlled
     ? externalValue
     : isRHFControlled
     ? undefined
     : internalValue;
 
-  // Get error state
   const rhfError = isRHFControlled
     ? externalErrors
       ? externalErrors[name]?.message?.toString()
@@ -141,13 +69,11 @@ const TextAreaInput = <T extends FieldValues>({
     : null;
   const error = externalError ?? rhfError;
 
-  // Memoize inputId to avoid recalculation
   const inputId = useMemo(
     () => id || name || label.toLowerCase().replace(/\s+/g, "-"),
     [id, name, label]
   );
 
-  // Unified change handler
   const handleChange = useCallback(
     (value: string) => {
       if (isExternallyControlled) {
@@ -179,7 +105,7 @@ const TextAreaInput = <T extends FieldValues>({
           aria-describedby={error ? `${inputId}-error` : undefined}
           aria-label={ariaLabel || label}
           className={`w-full focus:outline-none focus:ring-0 px-3 py-2 text-sm border rounded-md resize-none transition
-            ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white"}
+            ${disabled ? "bg-gray-100 cursor-not-allowed" : ""}
             ${error ? "border-red-500" : "border-gray-300"}
             ${className}`}
         />
@@ -195,7 +121,7 @@ const TextAreaInput = <T extends FieldValues>({
           aria-describedby={error ? `${inputId}-error` : undefined}
           aria-label={ariaLabel || label}
           className={`w-full focus:outline-none focus:ring-0 px-3 py-2 text-sm border rounded-md resize-none transition
-            ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white"}
+            ${disabled ? "bg-gray-100 cursor-not-allowed" : ""}
             ${error ? "border-red-500" : "border-gray-300"}
             ${className}`}
         />

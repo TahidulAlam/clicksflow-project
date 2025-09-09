@@ -39,11 +39,12 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       )}
 
       <main className="flex-1 overflow-y-auto bg-[#E5EFFA] lg:pr-5 lg:m-0 mx-2">
-        <div className="sticky lg:top-5 top-2 right-2 z-50">
+        <div className="sticky top-0 h-5 right-2  bg-[#E5EFFA] z-50"></div>
+        <div className="sticky lg:top-5 top-2 right-2 z-50 bg-[#E5EFFA]">
           <Navbar toggleSidebar={toggleSidebar} />
         </div>
 
-        <div className="lg:pt-5 lg:mt-5 mt-4">{children}</div>
+        <div className="lg:pt-0 lg:mt-5 mt-4">{children}</div>
       </main>
     </div>
   );

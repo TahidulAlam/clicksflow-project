@@ -196,7 +196,7 @@ function ImageUploader<T extends FieldValues>({
       </label>
 
       <div
-        className="w-full h-[250px] flex flex-col items-center justify-center relative border-2 border-dashed border-gray-300 rounded-lg  hover:bg-gray-50 transition-colors"
+        className="w-full h-[170px] flex flex-col items-center justify-center relative border-2 border-dashed border-gray-300 rounded-lg  hover:bg-gray-50 transition-colors"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >

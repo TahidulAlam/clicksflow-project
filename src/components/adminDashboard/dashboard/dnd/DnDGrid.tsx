@@ -2,9 +2,10 @@
 
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { createSwapy, SwapEvent } from "swapy";
-import { FiGrid, FiRefreshCw } from "react-icons/fi";
+import { FiRefreshCw } from "react-icons/fi";
 import MetricCard from "./MetricCard";
 import MultiLevelDropdown from "@/components/shared/dropdown/MultiLevelDropdown";
+import { HiViewGridAdd } from "react-icons/hi";
 
 export type MetricKey = keyof typeof METRICS;
 export type SlotLayout = Record<string, MetricKey>;
@@ -64,29 +65,30 @@ const METRICS = {
   },
 } as const;
 
-const loadLayout = (): SlotLayout => {
-  try {
-    const saved = localStorage.getItem("metricOrder");
-    return saved ? JSON.parse(saved) : DEFAULT_LAYOUT;
-  } catch (error) {
-    console.error("Error loading layout:", error);
-    return DEFAULT_LAYOUT;
-  }
-};
-
-const saveLayout = (layout: SlotLayout) => {
-  try {
-    localStorage.setItem("metricOrder", JSON.stringify(layout));
-  } catch (error) {
-    console.error("Error saving layout:", error);
-  }
-};
-
 export default function DnDGrid() {
-  const [slotItems, setSlotItems] = useState<SlotLayout>(loadLayout);
+  const [slotItems, setSlotItems] = useState<SlotLayout>(DEFAULT_LAYOUT);
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => saveLayout(slotItems), [slotItems]);
+  // Load layout from localStorage only on client
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("metricOrder");
+      if (saved) {
+        setSlotItems(JSON.parse(saved));
+      }
+    } catch (err) {
+      console.error("Error loading layout:", err);
+    }
+  }, []);
+
+  // Save layout whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem("metricOrder", JSON.stringify(slotItems));
+    } catch (err) {
+      console.error("Error saving layout:", err);
+    }
+  }, [slotItems]);
 
   const metricCards = useMemo(
     () =>
@@ -112,11 +114,17 @@ export default function DnDGrid() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (!isDesktop) return;
+
     const container = document.querySelector(".dnd-container");
     if (!(container instanceof HTMLElement)) return;
 
     const swapy = createSwapy(container);
     swapy.onSwap(handleSwap);
+
     return () => swapy.destroy();
   }, [handleSwap]);
 
@@ -146,9 +154,15 @@ export default function DnDGrid() {
 
   return (
     <div className="min-h-screen">
-      <div className="z-20 flex justify-end">
+      <div className="z-20 pt-0 lg:flex justify-between hidden items-center">
+        <h1 className="text-sm  py-2 px-3 border border-gray-300 rounded-md text-gray-700">
+          Hi Admin, you have{" "}
+          <span className="text-blue-500">0 conversions</span>,{" "}
+          <span className="text-blue-500">0 requests</span> and{" "}
+          <span className="text-blue-500">0 partners</span> pending approval.
+        </h1>
         <MultiLevelDropdown
-          label={<FiGrid className="w-4 h-4 text-blue-950" />}
+          label={<HiViewGridAdd className="w-4 h-4 text-blue-950" />}
           position="bottom-right"
           submenuPosition="left"
           menuItems={[
@@ -158,7 +172,7 @@ export default function DnDGrid() {
               children: [
                 {
                   content: (
-                    <div className=" w-80 p-3 z-50">
+                    <div className="w-80 p-3 z-50">
                       <div className="flex justify-between items-center mb-2">
                         <span className="ml-2 font-medium">Matrix</span>
                         <button
@@ -218,10 +232,18 @@ export default function DnDGrid() {
         />
       </div>
 
-      <div className="mt-5">
-        <div className="dnd-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-5 hidden lg:block">
+        <div className="dnd-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
           {metricCards}
         </div>
+      </div>
+
+      {/* Mobile/Tablet Non-DnD Grid */}
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:hidden">
+        {Object.values(slotItems).map((metricKey) => {
+          const metric = METRICS[metricKey];
+          return <MetricCard key={metric.id} {...metric} />;
+        })}
       </div>
     </div>
   );

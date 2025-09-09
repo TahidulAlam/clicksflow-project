@@ -42,7 +42,13 @@ const AddCategoryModal: React.FC<AddCategoryModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add Category" size="md">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Add Category"
+      size="md"
+      position="top"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <span className="text-sm text-gray-500">

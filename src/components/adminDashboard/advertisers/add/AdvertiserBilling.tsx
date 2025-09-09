@@ -406,8 +406,8 @@ const AdvertiserBilling: React.FC<AdvertiserBillingProps> = ({
                       />
                       {field.value && (
                         <>
-                          <div className="flex gap-5 mt-5">
-                            <div className="w-1/2">
+                          <div className="lg:flex flex-col gap-5 mt-5">
+                            <div className="lg:w-1/2 w-full">
                               <Controller
                                 name="invoiceGen"
                                 control={control}
@@ -426,7 +426,7 @@ const AdvertiserBilling: React.FC<AdvertiserBillingProps> = ({
                                 )}
                               />
                             </div>
-                            <div className="w-1/2">
+                            <div className="lg:w-1/2 w-full">
                               <NumberInput
                                 name="autoInvoiceAmountThreshold"
                                 label="Auto Invoice Creation Amount Threshold"

@@ -87,7 +87,7 @@ const SUBMENU_POSITION_CLASSES: Record<string, string> = {
 
 const DROPDOWN_CLASSES = {
   menu: "absolute z-[99999] bg-white border border-gray-300 rounded-md min-w-[12rem]",
-  item: "w-full text-left px-4 py-2 text-sm flex justify-between items-center hover:bg-gray-100 focus:bg-gray-100 focus:outline-none",
+  item: "w-full text-left px-4 py-2 text-sm flex justify-between items-center focus:bg-gray-100 focus:outline-none",
   header:
     "px-4 pt-2 pb-1 text-sm font-semibold text-gray-700 border-b border-gray-200",
   content: "px-4 pb-2 text-sm text-gray-600",

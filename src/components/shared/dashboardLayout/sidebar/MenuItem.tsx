@@ -43,11 +43,9 @@ const MenuItem: React.FC<MenuItemProps> = ({
     }
   }, [expanded]);
 
-  // ✅ Active check
   const isActive = href && pathname === href;
   const isSubActive = subMenu?.some((item) => pathname === item.href);
 
-  // 👉 Main link without submenu
   const renderMainLink = () => (
     <Link
       href={href!}
@@ -64,7 +62,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
     </Link>
   );
 
-  // 👉 Top-level menu item with toggle
   const renderDropdownToggle = () => (
     <div
       className={`flex items-center p-3 rounded-lg cursor-pointer transition-all duration-300 ease-in-out ${
@@ -92,12 +89,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
     </div>
   );
 
-  // 👉 Expanded submenu (visible on click when sidebar is open)
   const renderExpandedSubMenu = () => (
     <ul
       ref={submenuRef}
       style={{ maxHeight: height }}
-      className="pl-10 mt-1  space-y-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+      className="pl-5 mt-1  space-y-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
     >
       {subMenu?.map((sub) => {
         const active = pathname === sub.href;

@@ -28,6 +28,7 @@ interface SingleSelectProps {
   showSearch?: boolean;
   selectFirstByDefault?: boolean;
   customModalTrigger?: React.ReactNode;
+  customModalTriggerClassName?: string;
 }
 
 const SingleSelect: React.FC<SingleSelectProps> = ({
@@ -46,6 +47,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   showSearch = true,
   selectFirstByDefault = false,
   customModalTrigger,
+  customModalTriggerClassName,
 }) => {
   const internalId = useId();
   const inputId = id || internalId;
@@ -135,20 +137,26 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
       aria-expanded={showDropdown}
       aria-controls={dropdownId}
     >
-      {label && (
-        <div className="flex justify-between items-center">
-          <label
-            htmlFor={inputId}
-            className="text-xs font-bold text-gray-800"
-            id={`${inputId}-label`}
-          >
-            {label}
-            {required && <span className="text-red-700 ml-1">*</span>}
-          </label>
-          {suffix && <div>{suffix}</div>}
-        </div>
-      )}
-
+      <div className="flex justify-between items-center">
+        {label && (
+          <div className="flex justify-between items-center">
+            <label
+              htmlFor={inputId}
+              className="text-xs font-bold text-gray-800"
+              id={`${inputId}-label`}
+            >
+              {label}
+              {required && <span className="text-red-700 ml-1">*</span>}
+            </label>
+            {suffix && <div>{suffix}</div>}
+          </div>
+        )}
+        {customModalTrigger && (
+          <div className={customModalTriggerClassName}>
+            {customModalTrigger}
+          </div>
+        )}
+      </div>
       <button
         type="button"
         id={inputId}
@@ -156,7 +164,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         disabled={isDisabled}
         className={`
           w-full flex justify-between items-center text-left text-sm
-          border rounded-md px-3 py-[8px] 
+          border rounded-md px-3 py-[8px] h-[30px] 
           ${error ? "border-red-500" : "border-gray-300"}
           ${isDisabled ? "bg-gray-100 cursor-not-allowed opacity-50" : ""}
         `}
@@ -178,7 +186,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
       {showDropdown && (
         <div
           id={dropdownId}
-          className="absolute top-full mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10"
+          className="absolute top-full mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-20"
           role="listbox"
         >
           {showSearch && (
@@ -188,7 +196,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
               placeholder="Search..."
               onChange={(e) => debouncedSetSearchTerm(e.target.value)}
               disabled={isDisabled}
-              className="w-full px-3 py-[8px] border-b border-gray-200 text-sm sticky top-0 bg-white"
+              className="w-full px-3 py-[8px] h-[30px] border-b border-gray-200 text-sm sticky top-0 bg-white"
               aria-label="Search options"
               style={{ outline: "none", boxShadow: "none" }}
             />
@@ -200,7 +208,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                 <li
                   key={opt.value}
                   id={`${inputId}-option-${index}`}
-                  className={`px-3 py-[8px] border-b border-gray-200 text-sm cursor-pointer hover:bg-gray-100 ${
+                  className={`px-3 py-[8px] h-[30px] border-b border-gray-200 text-sm cursor-pointer hover:bg-gray-100 ${
                     fieldValue === opt.value ? "bg-blue-50 text-blue-700" : ""
                   }`}
                   onClick={() => handleSelect(opt.value)}
@@ -223,12 +231,6 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
               </li>
             )}
           </ul>
-
-          {customModalTrigger && (
-            <div className="p-2 border-t border-gray-200 bg-gray-50">
-              {customModalTrigger}
-            </div>
-          )}
         </div>
       )}
 

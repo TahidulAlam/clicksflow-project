@@ -8,10 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Container from "@/components/shared/container/Container";
 
 import TextAreaInput from "@/components/shared/forms/TextAreaInput";
-import ExpiresDate from "@/components/shared/forms/ExpiresDate";
 import TextInput from "@/components/shared/forms/TextInput";
 import MacroBuilder from "@/components/shared/forms/MacroBuilder";
-import OfferGroupStatus from "@/components/shared/forms/OfferGroupStatus";
 import ImageUploader from "@/components/shared/forms/ImageUploader";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import AddCategoryModal from "./AddCategoryModal";
@@ -21,6 +19,8 @@ import TagsInput from "@/components/shared/forms/TagsInput";
 // import FormBody from "@/components/shared/forms/form/FormBody";
 import FormArea from "@/components/shared/forms/FormArea";
 import FormActions from "@/components/shared/forms/FormActions";
+import OfferGroupStatus from "./OfferGroupStatus";
+import ExpiresDate from "./ExpiresDate";
 
 const advertiserOptions = [{ value: "profitnxt", label: "profit NXT" }];
 const categoryOptions = [
@@ -167,6 +167,7 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
           } = methods;
 
           const formValues = watch();
+          // console.log("Live Form Values:", formValues);
           const {
             status,
             category,
@@ -197,9 +198,36 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                 isLoading={isLoading}
               />
 
-              <div className="flex gap-4">
-                <div className="flex flex-col w-1/2 gap-2">
-                  <div className="flex flex-col space-y-8">
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Left Column */}
+                <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                  <div className="flex flex-col gap-2">
+                    {/* Advertiser */}
+                    <div>
+                      <SingleSelect
+                        id="advertiser"
+                        label="Advertiser"
+                        options={advertiserOptions}
+                        value={advertiser}
+                        required
+                        onChange={(val) => setValue("advertiser", val)}
+                        error={errors.advertiser}
+                        customModalTrigger={
+                          <button
+                            type="button"
+                            onClick={() => setIsAdModalOpen(true)}
+                            className="text-xs text-blue-950"
+                          >
+                            + Add
+                          </button>
+                        }
+                      />
+                      <AddAdvertiserModal
+                        isOpen={isAdModalOpen}
+                        onClose={() => setIsAdModalOpen(false)}
+                      />
+                    </div>
+                    {/* Category */}
                     <div>
                       <SingleSelect
                         id="category"
@@ -213,7 +241,7 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                           <button
                             type="button"
                             onClick={() => setIsCgModalOpen(true)}
-                            className="text-sm text-blue-600 hover:underline"
+                            className="text-xs text-blue-950"
                           >
                             + Add
                           </button>
@@ -224,29 +252,8 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                         onClose={() => setIsCgModalOpen(false)}
                       />
                     </div>
-                    <div>
-                      <SingleSelect
-                        id="advertiser"
-                        label="Advertiser"
-                        options={advertiserOptions}
-                        value={advertiser}
-                        onChange={(val) => setValue("advertiser", val)}
-                        error={errors.advertiser}
-                        customModalTrigger={
-                          <button
-                            type="button"
-                            onClick={() => setIsAdModalOpen(true)}
-                            className="text-sm text-blue-600 hover:underline"
-                          >
-                            + Add
-                          </button>
-                        }
-                      />
-                      <AddAdvertiserModal
-                        isOpen={isAdModalOpen}
-                        onClose={() => setIsAdModalOpen(false)}
-                      />
-                    </div>
+
+                    {/* Currency */}
                     <div>
                       <SingleSelect
                         id="currency"
@@ -260,7 +267,9 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                     </div>
                   </div>
                 </div>
-                <div className="w-1/2">
+
+                {/* Right Column */}
+                <div className="w-full lg:w-1/2">
                   <ImageUploader
                     name="image"
                     register={register}
@@ -287,12 +296,18 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                     tags={field.value || []}
                     setTags={(newTags) => field.onChange(newTags)}
                     inputValue={inputValue}
+                    labelSpan={true}
                     setInputValue={setInputValue}
                   />
                 )}
               />
 
-              <MacroBuilder url={url} setUrl={setUrl} />
+              <MacroBuilder
+                label="Base Destination URL "
+                required
+                url={url}
+                setUrl={setUrl}
+              />
 
               <TextInput
                 name="appidentifier"
@@ -343,6 +358,7 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
                   <TextInput
                     name="advertisercampaignname"
                     label="Advertiser Campaign Name"
+                    className="whitespace-nowrap"
                     register={register}
                     errors={errors}
                     required

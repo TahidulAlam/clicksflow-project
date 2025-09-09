@@ -25,7 +25,7 @@ const TabbedCard: React.FC<TabbedCardProps> = ({
     <Tabs
       className={`bg-[#F2F7FD] p-4 border border-gray-300 rounded-xl ${className}`}
     >
-      <TabList className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent pb-2">
+      <TabList className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent  lg:pb-2 pb-5">
         {tabs.map(({ id, title }) => (
           <Tab
             key={id}

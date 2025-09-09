@@ -229,7 +229,7 @@ const ModalComponent = ({
           SIZE_CLASSES[size]
         } transition-all duration-300 ${getModalTransformClasses()} transform-gpu`}
       >
-        <div className="bg-white rounded-xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+        <div className="bg-white rounded-xl shadow-2xl max-h-[90vh] lg:mx-auto mx-4 flex flex-col overflow-hidden">
           {/* Header */}
           {(title || showCloseIcon) && (
             <div className="flex justify-between items-center p-4 border-b border-gray-200">
