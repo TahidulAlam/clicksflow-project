@@ -26,7 +26,7 @@ const Integration: React.FC = () => {
           {tabs.map(({ id, title }) => (
             <Tab
               key={id}
-              className="focus:outline-none px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer"
+              className="focus:outline-none px-2 py-1 border border-gray-300 rounded-lg cursor-pointer"
               selectedClassName="bg-[#1E3557] text-white rounded-lg"
             >
               <div className="flex items-center">

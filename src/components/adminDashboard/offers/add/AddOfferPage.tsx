@@ -3,7 +3,6 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import RevenuePayoutForm from "./revenuePayoutForm/RevenuePayoutForm";
-// import GenarelAddForm from "./addOfferForm/GenarelAddForm";
 import TrackingControlForm from "./trackingAndControlForm/TrackingControlForm";
 import AttributionForm from "./attributionForm/AttributionForm";
 import TargetingForm from "./targetingForm/TargetingForm";
@@ -37,7 +36,7 @@ const AddOfferPage: React.FC = () => {
           {tabs.map(({ id, title }) => (
             <Tab
               key={id}
-              className="focus:outline-none px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer"
+              className="focus:outline-none px-2 py-1 border border-gray-300 rounded-lg cursor-pointer"
               selectedClassName="bg-[#1E3557] text-white rounded-lg"
             >
               <div className="flex items-center">
