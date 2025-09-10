@@ -1,6 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 
 interface Column {
   header: string;

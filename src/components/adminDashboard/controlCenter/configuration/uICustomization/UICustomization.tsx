@@ -24,7 +24,7 @@ const UICustomization: React.FC = () => {
         {UICustomizationTabs.map(({ id, title }) => (
           <Tab
             key={id}
-            className="focus:outline-none px-3 py-1 text-sm border-2 border-gray-300 rounded-lg cursor-pointer transition-colors whitespace-nowrap text-gray-500"
+            className="focus:outline-none px-3 py-1 text-sm border border-gray-300 rounded-lg cursor-pointer transition-colors whitespace-nowrap text-gray-500"
             selectedClassName="bg-[#1E3557] text-white border-[#1E3557]"
           >
             {title}

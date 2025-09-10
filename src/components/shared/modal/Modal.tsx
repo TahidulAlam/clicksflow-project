@@ -236,7 +236,7 @@ const ModalComponent = ({
               {title && (
                 <h2
                   id="modal-title"
-                  className="text-lg font-semibold text-gray-900"
+                  className="text-sm font-semibold text-gray-900"
                 >
                   {title}
                 </h2>
@@ -245,11 +245,19 @@ const ModalComponent = ({
                 <button
                   onClick={onClose}
                   type="button"
-                  className="text-white hover:bg-red-600 transition-colors text-2xl w-8 h-8 rounded-full bg-red-500 flex items-center justify-center"
+                  className="text-red-600 transition-colors text-2xl w-10 h-10 rounded-full  flex items-center justify-center"
                   aria-label="Close modal"
                 >
                   &times;
                 </button>
+                // <button
+                //   onClick={onClose}
+                //   type="button"
+                //   className="text-white hover:bg-red-600 transition-colors text-2xl w-8 h-8 rounded-full bg-red-500 flex items-center justify-center"
+                //   aria-label="Close modal"
+                // >
+                //   &times;
+                // </button>
               )}
             </div>
           )}

@@ -35,7 +35,7 @@ const MyAccountGeneral = () => {
                 <h2 className="text-sm font-semibold py-1">Account Info</h2>
               </BoxHeader>
               <BoxContent>
-                <div className="p-4">
+                <div>
                   <UserProfileCard data={userData} />
                 </div>
               </BoxContent>
@@ -47,7 +47,7 @@ const MyAccountGeneral = () => {
                 <h2 className="text-sm font-semibold py-1">Security</h2>
               </BoxHeader>
               <BoxContent>
-                <div className="p-4">
+                <div>
                   <UserProfileCard data={userData} />
                 </div>
               </BoxContent>
@@ -71,7 +71,7 @@ const MyAccountGeneral = () => {
                 </button>
               </BoxHeader>
               <BoxContent>
-                <div className="p-4">
+                <div>
                   <span>id=accordion-2</span>
                 </div>
               </BoxContent>
@@ -83,7 +83,7 @@ const MyAccountGeneral = () => {
                 <h2 className="text-sm font-semibold py-1">Links</h2>
               </BoxHeader>
               <BoxContent>
-                <div className="p-4">
+                <div>
                   <UserProfileCard data={userData} />
                 </div>
               </BoxContent>

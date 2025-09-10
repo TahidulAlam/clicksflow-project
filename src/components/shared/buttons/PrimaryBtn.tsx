@@ -29,15 +29,15 @@ const PrimaryBtn = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const base = `${className} inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md`;
 
     const variants = {
-      primary: `${className} bg-white text-[#23395d] focus:ring-0 border-2 border-gray-300 hover:shadow-md cursor-pointer`,
-      secondary: `${className} bg-gray-100 text-gray-700 border-2 border-gray-300 hover:bg-gray-200 focus:ring-0 hover:shadow-md cursor-pointer`,
-      ghost: `${className} bg-gray-100 text-gray-700 border-2 border-gray-300 hover:bg-blue-100 focus:ring-0 hover:shadow-md cursor-pointer`,
+      primary: `${className} bg-white text-[#23395d] focus:ring-0 border border-gray-300 hover:shadow-md cursor-pointer`,
+      secondary: `${className} bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200 focus:ring-0 hover:shadow-md cursor-pointer`,
+      ghost: `${className} bg-gray-100 text-gray-700 border border-gray-300 hover:bg-blue-100 focus:ring-0 hover:shadow-md cursor-pointer`,
       custom: `${className} cursor-pointer`,
     };
 
     const sizes = {
       sm: "text-xs px-3 py-1",
-      md: "text-sm px-4 py-[5px]",
+      md: "text-sm px-[4px] py-[8px]",
       lg: "text-base px-5 py-[8px]",
       ghost: "text-sm px-2 py-1",
     };

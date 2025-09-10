@@ -1,8 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
 
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 import { emailTemplates } from "@/config/emailTemplatesData";
 import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import { BsGlobeCentralSouthAsia } from "react-icons/bs";
@@ -12,7 +24,16 @@ type EmailTemplateRow = {
   name: string;
   enabled: boolean; // changed from action -> enabled (boolean toggle)
 };
-
+interface Column {
+  header: string;
+  accessor: string;
+  searchable?: boolean;
+  fixed?: "left" | "right";
+  width?: string;
+  cell?: (row: any) => React.ReactNode;
+  headerClassName?: string;
+  cellClassName?: string;
+}
 // initial data with toggle state
 const initialData: EmailTemplateRow[] = emailTemplates.map((t) => ({
   id: t.id,
@@ -30,7 +51,7 @@ const DefaultNotificationSettings = () => {
     );
   };
 
-  const labelColumns = [
+  const labelColumns: Column[] = [
     {
       header: "Name",
       width: "auto",
@@ -44,7 +65,6 @@ const DefaultNotificationSettings = () => {
       width: "auto",
       accessor: "enabled",
       headerClassName: "text-end",
-      headerButtonClassName: "flex justify-end",
       cellClassName: "",
       cell: (row: EmailTemplateRow) => (
         <div className="flex justify-end">

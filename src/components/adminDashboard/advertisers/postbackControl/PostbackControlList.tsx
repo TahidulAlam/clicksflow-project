@@ -1,7 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 
 interface Column {
   header: string;
@@ -86,11 +97,6 @@ const columns: Column[] = [
   },
 ];
 
-const PostbackControlList = () => (
-  <DataList
-    data={data}
-    columns={columns}
-  />
-);
+const PostbackControlList = () => <DataList data={data} columns={columns} />;
 
 export default PostbackControlList;

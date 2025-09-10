@@ -2,7 +2,18 @@
 "use client";
 
 import React from "react";
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 import MultiLevelDropdown from "@/components/shared/dropdown/MultiLevelDropdown";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import toast from "react-hot-toast";
@@ -137,7 +148,7 @@ const ticketColumns: Column[] = [
 
 const SupportTickets = () => {
   return (
-    <div className="p-4">
+    <div>
       <DataList
         data={ticketData}
         columns={ticketColumns}

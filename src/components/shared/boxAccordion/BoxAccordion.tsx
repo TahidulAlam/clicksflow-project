@@ -151,7 +151,7 @@ const BoxAccordion = ({
 
   return (
     <div
-      className={`rounded-xl bg-white overflow-hidden border border-gray-300 ${className}`}
+      className={`rounded-xl bg-[#F2F7FD] overflow-hidden border border-gray-300 ${className}`}
       data-accordion-id={id}
     >
       {renderedChildren}

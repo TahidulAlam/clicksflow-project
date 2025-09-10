@@ -13,7 +13,7 @@
 //   if (!template) return <p>Template not found.</p>;
 
 //   return (
-//     <div className="p-4">
+//     <div>
 //       <h1 className="text-lg font-bold">Edit Template</h1>
 //       <p>Currently editing template ID: {id}</p>
 //       <EmailTemplateEdit templateId={id} initialData={template} />
@@ -66,7 +66,7 @@ export default function Page() {
   };
 
   return (
-    <div className="p-4">
+    <div>
       {/* <h1 className="text-lg font-bold">Edit Template</h1>
       <p>Currently editing template ID: {id}</p> */}
 

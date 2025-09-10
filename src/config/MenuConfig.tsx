@@ -42,7 +42,8 @@ export const MENU_CONFIG: Record<UserType, MenuItem[]> = {
         { title: "Add", href: "/admin/offers/add" },
         { title: "Offer Group", href: "/admin/offers/group/list" },
         { title: "Smart Link", href: "/admin/offers/smart-link/list" },
-        { title: "Creatives", href: "/admin/offers/creative/list?status=1" },
+        { title: "Creatives", href: "/admin/offers/creative/list" },
+        // { title: "Creatives", href: "/admin/offers/creative/list?status=1" },
         {
           title: "Traffic Control",
           href: "/admin/offers/traffic/control/list",

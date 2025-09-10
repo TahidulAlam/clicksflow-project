@@ -221,7 +221,7 @@
 //               </div>
 //               <select
 //                 {...register("advertiser")}
-//                 className="border-2 border-gray-300 rounded-lg py-2 px-3"
+//                 className="border border-gray-300 rounded-lg py-2 px-3"
 //               >
 //                 <option value="">Select One</option>
 //                 <option value="admin@example.com">Admin</option>
@@ -240,7 +240,7 @@
 //               </div>
 //               <select
 //                 {...register("category")}
-//                 className="border-2 border-gray-300 rounded-lg py-2 px-3"
+//                 className="border border-gray-300 rounded-lg py-2 px-3"
 //               >
 //                 <option value="">Select One</option>
 //                 <option value="admin@example.com">Admin</option>

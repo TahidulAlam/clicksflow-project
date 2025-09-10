@@ -5,7 +5,18 @@ import BoxAccordion, {
   BoxContent,
   BoxHeader,
 } from "@/components/shared/boxAccordion/BoxAccordion";
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 import React from "react";
 
 interface Metric {
@@ -107,6 +118,7 @@ const Columns: Column[] = [
     width: "100px",
   },
 ];
+
 const metrics: Metric[] = [
   { label: "Impressions", value: 0 },
   { label: "Gross Clicks", value: 0 },

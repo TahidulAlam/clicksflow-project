@@ -1,10 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 import MultiLevelDropdown from "@/components/shared/dropdown/MultiLevelDropdown";
 import { emailTemplates } from "@/config/emailTemplatesData";
 
@@ -14,7 +26,16 @@ type EmailTemplateRow = {
   subject: string;
   action: string;
 };
-
+interface Column {
+  header: string;
+  accessor: string;
+  searchable?: boolean;
+  fixed?: "left" | "right";
+  width?: string;
+  cell?: (row: any) => React.ReactNode;
+  headerClassName?: string;
+  cellClassName?: string;
+}
 interface MenuItem {
   label: string | React.ReactNode;
   icon?: React.ReactNode;
@@ -31,7 +52,7 @@ const labelData: EmailTemplateRow[] = emailTemplates.map((t) => ({
   action: "",
 }));
 
-const labelColumns = [
+const labelColumns: Column[] = [
   {
     header: "Name",
     width: "auto",
@@ -61,7 +82,6 @@ const labelColumns = [
     width: "auto",
     accessor: "action",
     headerClassName: "text-end",
-    headerButtonClassName: "flex justify-end",
     cellClassName: "",
     cell: (row: EmailTemplateRow) => {
       const menuItems: MenuItem[] = [

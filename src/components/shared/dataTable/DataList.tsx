@@ -1,3 +1,5 @@
+// /* eslint-disable react-hooks/exhaustive-deps */
+
 /* eslint-disable react-hooks/exhaustive-deps */
 
 "use client";
@@ -51,6 +53,8 @@ interface DataListProps<T = Record<string, unknown>> {
   addLinkLabel?: string;
   addLinkIcon?: React.ReactNode;
   addLink?: string;
+  theadClassName?: string;
+  headerRowClassName?: string;
   showLinkButton?: boolean;
   showSearchBar?: boolean;
   showColumnToggle?: boolean;
@@ -130,6 +134,8 @@ const DataList = <T extends Record<string, unknown>>({
   addLinkIcon,
   onVisibleColumnsChange,
   columnSearchQuery = "",
+  theadClassName = "",
+  headerRowClassName = "",
   onColumnSearchChange,
   onRestoreColumnsClick = () => {},
   showfilter = true,
@@ -177,6 +183,14 @@ const DataList = <T extends Record<string, unknown>>({
   const pageSize = onPageSizeChange
     ? pageSizeOptions[0] || 10
     : internalPageSize;
+
+  // Create a stable reference for onRowSelect using useCallback
+  const stableOnRowSelect = useCallback(
+    (rows: T[]) => {
+      onRowSelect(rows);
+    },
+    [] // Empty dependency array since onRowSelect is from props
+  );
 
   useEffect(() => {
     if (!columns.length) {
@@ -276,24 +290,24 @@ const DataList = <T extends Record<string, unknown>>({
         } else {
           updated = isSelected ? [...prev, row] : prev.filter((r) => r !== row);
         }
-        onRowSelect(updated);
+        stableOnRowSelect(updated);
         return updated;
       });
     },
-    [onRowSelect, rowId, enableRowSelection]
+    [stableOnRowSelect, rowId, enableRowSelection]
   );
 
   const handleSelectAll = useCallback(
     (isChecked: boolean) => {
       if (isChecked) {
         setSelectedRows(paginatedData);
-        onRowSelect(paginatedData);
+        stableOnRowSelect(paginatedData);
       } else {
         setSelectedRows([]);
-        onRowSelect([]);
+        stableOnRowSelect([]);
       }
     },
-    [paginatedData, onRowSelect]
+    [paginatedData, stableOnRowSelect]
   );
 
   const isAllSelected = useMemo(
@@ -485,18 +499,19 @@ const DataList = <T extends Record<string, unknown>>({
     handlePageChange,
   ]);
 
+  // Fixed useEffect - removed onRowSelect from dependencies
   useEffect(() => {
     if (!enableRowSelection) {
       setSelectedRows([]);
-      onRowSelect([]);
+      stableOnRowSelect([]);
     }
-  }, [enableRowSelection, onRowSelect]);
+  }, [enableRowSelection]); // Removed onRowSelect from dependencies
 
   useEffect(() => {
     if (showSearchBar && searchInputRef.current) {
       searchInputRef.current.focus();
     }
-  }, []);
+  }, [showSearchBar]);
 
   if (isLoading) {
     return <DataListSkeleton rows={10} columns={columns.length || 5} />;
@@ -533,7 +548,7 @@ const DataList = <T extends Record<string, unknown>>({
           <div className="text-center">
             <Link
               href={addLink}
-              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300"
+              className="inline-flex h-[30px] items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300"
             >
               {addLinkLabel}
             </Link>
@@ -549,17 +564,17 @@ const DataList = <T extends Record<string, unknown>>({
       {title && <h2 className="text-xl font-semibold">{title}</h2>}
 
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+      <div className="flex flex-col h-[30px] sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
         <div className="flex flex-wrap gap-2">
           {showLinkButton && addLink && (
             <Link
               href={addLink}
-              className="inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300 text-gray-700 "
+              className="inline-flex h-[30px] items-center justify-center rounded-md font-medium transition focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md bg-white px-4 py-2 text-sm border border-gray-300 text-gray-700 "
               aria-label={addLinkLabel}
             >
               {addLinkIcon && (
                 <>
-                  <span className="text-md p-1">{addLinkIcon}</span>
+                  <span className="text-md h-[30px] p-1">{addLinkIcon}</span>
                 </>
               )}
               <span>{addLinkLabel}</span>
@@ -572,7 +587,7 @@ const DataList = <T extends Record<string, unknown>>({
                   ? `Selected (${selectedRows.length})`
                   : filterLabel
               }
-              labelClass="text-sm bg-white px-4 py-2 rounded-md border"
+              labelClass="text-sm h-[30px] bg-white px-4 py-2 rounded-md border"
               position="bottom-center"
               submenuPosition="left"
               menuItems={filterDropdownItems}
@@ -583,7 +598,7 @@ const DataList = <T extends Record<string, unknown>>({
             <PrimaryBtn
               size="md"
               onClick={exportToCSV}
-              className="flex items-center gap-2"
+              className="flex items-center h-[30px] gap-2"
               aria-label="Export to CSV"
             >
               <FiDownload /> Export CSV
@@ -601,12 +616,12 @@ const DataList = <T extends Record<string, unknown>>({
                 onChange={(e) => setSearchInput(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder="Search..."
-                className="w-full pl-3 pr-10 py-2 text-sm border-l border-y border-gray-300 bg-white rounded-l-md focus:ring-0 focus:outline-none"
+                className="w-full pl-3 pr-10 py-2 h-[30px] text-sm border-l border-y border-gray-300 bg-white rounded-l-md focus:ring-0 focus:outline-none"
                 aria-label="Search table data"
               />
               <button
                 onClick={() => debouncedSearch.flush()}
-                className="bg-gray-100 border-r border-y border-gray-300 rounded-r-md inset-y-0 right-0 px-3 flex items-center text-gray-700 hover:text-gray-900"
+                className="bg-gray-100 h-[30px] border-r border-y border-gray-300 rounded-r-md inset-y-0 right-0 px-3 flex items-center text-gray-700 hover:text-gray-900"
                 aria-label="Search"
               >
                 <BsSearch />
@@ -616,7 +631,7 @@ const DataList = <T extends Record<string, unknown>>({
           {showColumnToggle && (
             <MultiLevelDropdown
               label={<BsThreeDotsVertical />}
-              labelClass="bg-white px-2 h-[38px] rounded border"
+              labelClass="bg-white px-2 h-[30px] rounded border"
               position="bottom-right"
               submenuPosition="left"
               menuItems={[
@@ -702,6 +717,8 @@ const DataList = <T extends Record<string, unknown>>({
         isAllSelected={isAllSelected}
         onSelectAll={handleSelectAll}
         className={className}
+        theadClassName={theadClassName}
+        headerRowClassName={headerRowClassName}
       />
 
       {/* Pagination */}

@@ -1,19 +1,29 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
 
-interface Column<T = any> {
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
+
+interface Column {
   header: string;
-  accessor: keyof T;
+  accessor: string;
   searchable?: boolean;
   fixed?: "left" | "right";
   width?: string;
-  cell?: (row: T) => React.ReactNode;
+  cell?: (row: any) => React.ReactNode;
   headerClassName?: string;
   cellClassName?: string;
 }
-
 
 const data = [
   {
@@ -34,24 +44,27 @@ const data = [
   },
 ];
 
-const columns: Column<{
-  id: number;
-  name: string;
-  registeredAt: string;
-  modifiedAt: string;
-  kycStatus: string;
-  action: string;
-}>[] = [
-    { header: "ID", accessor: "id", searchable: true, fixed: "left", width: "60px" },
-    { header: "Name", accessor: "name", searchable: true },
-    { header: "Registered at", accessor: "registeredAt", searchable: false },
-    { header: "Modified at", accessor: "modifiedAt", searchable: false },
-    { header: "KYC Status", accessor: "kycStatus", searchable: true },
-    { header: "Action", accessor: "action", searchable: false, fixed: "right", width: "100px" },
-  ];
+const columns: Column[] = [
+  {
+    header: "ID",
+    accessor: "id",
+    searchable: true,
+    fixed: "left",
+    width: "60px",
+  },
+  { header: "Name", accessor: "name", searchable: true },
+  { header: "Registered at", accessor: "registeredAt", searchable: false },
+  { header: "Modified at", accessor: "modifiedAt", searchable: false },
+  { header: "KYC Status", accessor: "kycStatus", searchable: true },
+  {
+    header: "Action",
+    accessor: "action",
+    searchable: false,
+    fixed: "right",
+    width: "100px",
+  },
+];
 
-const AdvertiserKycVerified = () => (
-  <DataList data={data} columns={columns} />
-);
+const AdvertiserKycVerified = () => <DataList data={data} columns={columns} />;
 
 export default AdvertiserKycVerified;

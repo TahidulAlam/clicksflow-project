@@ -11,7 +11,7 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ title, unit, isMoney }) => {
   return (
-    <div className="flex flex-col justify-between rounded-lg shadow  w-full p-5 active:border-2 active:border-dashed bg-[#F2F7FD] border-gray-400 cursor-move">
+    <div className="flex flex-col justify-between rounded-lg shadow  w-full p-5 active:border active:border-dashed bg-[#F2F7FD] border-gray-400 cursor-move">
       <div className="flex justify-between">
         <div>
           <div className="text-gray-500 text-sm font-bold ">{title}</div>

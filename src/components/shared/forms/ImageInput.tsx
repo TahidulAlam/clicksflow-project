@@ -58,12 +58,12 @@ const ImageInput = <T extends FieldValues>({
           register(name).onChange(e); // react-hook-form tracking
         }}
         className={`block w-full text-sm text-gray-700
-          file:mr-4 file:py-2 file:px-4
+          file:mr-4 file:py-1 file:px-4
           file:rounded-md file:border-0
           file:text-sm file:font-semibold
           file:bg-gray-100 file:text-gray-700
           hover:file:bg-gray-200
-          border rounded-md p-1
+          border rounded-md lg:h-[30px] h-[30px]
           ${error ? "border-red-500" : "border-gray-300"}
         `}
       />
@@ -73,7 +73,7 @@ const ImageInput = <T extends FieldValues>({
           alt="Image preview"
           width={128}
           height={128}
-          className="object-cover rounded-md border border-gray-300"
+          className="object-cover rounded-md border lg:h-[30px] h-[30px] border-gray-300"
         />
       )}
 

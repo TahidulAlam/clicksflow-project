@@ -283,7 +283,7 @@ const rawMenuItems: MenuItem[] = [
 // ReportingOffer component
 const ReportingOffer = () => {
   return (
-    <div className="p-4">
+    <div>
       <DataFilterTable
         data={InvoiceListData}
         columns={invoiceColumns}

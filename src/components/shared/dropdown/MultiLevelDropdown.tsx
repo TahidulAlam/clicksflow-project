@@ -479,6 +479,11 @@ const MultiLevelDropdown: React.FC<MultiLevelDropdownProps> = React.memo(
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
     const [isPositionCalculated, setIsPositionCalculated] = useState(false);
 
+    const closeAllMenus = useCallback(() => {
+      setOpen(false);
+      setOpenPath([]);
+    }, []);
+
     useEffect(() => {
       const element = document.createElement("div");
       document.body.appendChild(element);
@@ -574,7 +579,7 @@ const MultiLevelDropdown: React.FC<MultiLevelDropdownProps> = React.memo(
       const handleScroll = () => closeAllMenus();
       window.addEventListener("scroll", handleScroll, { passive: true });
       return () => window.removeEventListener("scroll", handleScroll);
-    }, [open, closeOnScroll]);
+    }, [open, closeOnScroll, closeAllMenus]);
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -590,12 +595,7 @@ const MultiLevelDropdown: React.FC<MultiLevelDropdownProps> = React.memo(
       return () => {
         document.removeEventListener("click", handleClickOutside, true);
       };
-    }, []);
-
-    const closeAllMenus = useCallback(() => {
-      setOpen(false);
-      setOpenPath([]);
-    }, []);
+    }, [closeAllMenus]);
 
     useEffect(() => {
       const handleEscape = (e: KeyboardEvent) => {

@@ -5,7 +5,18 @@ import BoxAccordion, {
   BoxContent,
   BoxHeader,
 } from "@/components/shared/boxAccordion/BoxAccordion";
-import DataList from "@/components/shared/dataTable/DataList";
+import DataListSkeleton from "@/components/shared/skeleton/DataListSkeleton";
+import dynamic from "next/dynamic";
+
+const DataList = dynamic(
+  () => import("@/components/shared/dataTable/DataList"),
+  {
+    ssr: false,
+    loading: () => (
+      <DataListSkeleton rows={5} columns={12} showToolbar={true} />
+    ),
+  }
+);
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
 
 interface Column {
@@ -131,10 +142,7 @@ const AdvertisersInvoiceList = () => {
         </BoxContent>
       </BoxAccordion>
 
-      <DataList
-        data={InvoiceListData}
-        columns={invoiceColumns}
-      />
+      <DataList data={InvoiceListData} columns={invoiceColumns} />
     </>
   );
 };
