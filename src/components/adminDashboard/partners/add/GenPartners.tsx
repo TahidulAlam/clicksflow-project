@@ -269,7 +269,7 @@ const GenPartners: React.FC<PartnersGeneralProps> = ({
                   />
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col lg:flex-row gap-2">
                 <div className="w-1/2">
                   <ToggleSwitch
                     size="lg"

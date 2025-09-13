@@ -175,7 +175,8 @@ const Sidebar: React.FC<SidebarProps> = ({
                   href={menu.href}
                   hasSubMenu={!!menu.subMenu}
                   open={open}
-                  onClick={onMobileLinkClick}
+                  // onClick={onMobileLinkClick}
+                  onClick={!menu.subMenu ? onMobileLinkClick : undefined}
                   toggleSubMenu={() => menu.key && toggleSubMenu(menu.key)}
                   subMenu={menu.subMenu}
                   expanded={menu.key ? !!expanded[menu.key] : false}

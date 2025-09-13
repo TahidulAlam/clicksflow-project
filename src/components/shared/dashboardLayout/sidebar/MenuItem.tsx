@@ -218,17 +218,31 @@ const MenuItem: React.FC<MenuItemProps> = ({
   }, [expanded]);
 
   // Handle click events
+  // const handleClick = useCallback(
+  //   (e: React.MouseEvent) => {
+  //     if (hasSubMenu && open) {
+  //       e.preventDefault();
+  //       toggleSubMenu?.();
+  //     }
+  //     onClick?.();
+  //   },
+  //   [hasSubMenu, open, toggleSubMenu, onClick]
+  // );
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       if (hasSubMenu && open) {
         e.preventDefault();
         toggleSubMenu?.();
+        return; // Early return for submenu toggles
       }
-      onClick?.();
-    },
-    [hasSubMenu, open, toggleSubMenu, onClick]
-  );
 
+      // For actual navigation items, call onClick
+      if ((href && !hasSubMenu) || (href && !open)) {
+        onClick?.();
+      }
+    },
+    [hasSubMenu, open, toggleSubMenu, onClick, href]
+  );
   // Handle keyboard events
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
