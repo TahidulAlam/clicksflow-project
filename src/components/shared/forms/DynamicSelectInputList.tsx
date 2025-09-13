@@ -6,6 +6,7 @@ import { MdClose } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import { FormData } from "@/components/adminDashboard/offers/add/trackingAndControlForm/TrackingControlForm";
+import ArrowLine from "../ArrowLine";
 
 interface DynamicSelectInputListProps {
   form: UseFormReturn<FormData>;
@@ -27,7 +28,7 @@ interface EventRowProps {
   index: number;
   placeholder: string;
   isDisabled: boolean;
-  fieldErrors:
+  fieldErrors?:
     | Record<
         number,
         { baseRevenueType?: { message?: string }; value?: { message?: string } }
@@ -81,10 +82,11 @@ const EventRow = memo<EventRowProps>(
 
     return (
       <div
-        className="flex gap-2"
+        className="flex gap-2  "
         role="group"
         aria-label={`Event ${index + 1}`}
       >
+        {/* Select field */}
         <div className="w-1/2 mb-2">
           <SingleSelect
             id={`${fieldName}.${index}.baseRevenueType`}
@@ -106,11 +108,13 @@ const EventRow = memo<EventRowProps>(
             aria-required="true"
           />
         </div>
-        <div className="w-1/2 flex mb-2">
+
+        {/* Input + Remove */}
+        <div className="w-1/2 flex my-4">
           <input
             type="text"
             id={`${fieldName}.${index}.value`}
-            className="block w-full border-r-none py-2 px-3 border border-gray-300 rounded-l-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm disabled:bg-gray-100"
+            className="block w-full border-r-none h-[30px] px-1.5 my-4 border border-gray-300 rounded-l-md  focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm disabled:bg-gray-100"
             placeholder={placeholder}
             value={value}
             onChange={handleValueChange}
@@ -126,7 +130,7 @@ const EventRow = memo<EventRowProps>(
           <button
             type="button"
             onClick={handleRemoveClick}
-            className="p-2 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors"
+            className="h-[30px] px-1.5 my-4 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors"
             disabled={isDisabled}
             aria-label={`Remove event ${index + 1}`}
           >
@@ -146,8 +150,6 @@ const DynamicSelectInputList: React.FC<DynamicSelectInputListProps> = ({
   placeholder = "Enter event name",
   isDisabled = false,
 }) => {
-  // const [hide, setHide] = useState(false);
-
   const {
     control,
     formState: { errors, isSubmitting },
@@ -166,33 +168,37 @@ const DynamicSelectInputList: React.FC<DynamicSelectInputListProps> = ({
     | undefined;
 
   const handleAdd = useCallback(() => {
-    // setHide(true);
     append({ baseRevenueType: "", value: "" });
   }, [append]);
 
   return (
-    <div className="flex justify-between">
-      <div className="w-1/6 flex items-center">
+    <div className="flex justify-between my-4  scrollbar-thin ">
+      {/* Add Button */}
+      <div className="w-1/6 flex items-center ">
         <button
           type="button"
           onClick={handleAdd}
-          className="flex items-center bg-gray-50 z-10 border border-gray-300 rounded-lg p-1 gap-2 text-blue-600 hover:text-blue-800 disabled:text-gray-400 transition-colors"
+          className="flex items-center h-[30px] w-full px-1.5 bg-gray-50 z-10 border border-gray-300 rounded-lg p-1 gap-2 text-gray-800  disabled:text-gray-400 transition-colors text-xs text-center justify-center"
           disabled={isDisabled || isSubmitting}
           aria-label="Add a new event"
         >
-          <FaPlus size={16} />
-          <span className="text-sm font-medium">Add New</span>
+          <FaPlus size={12} />
+          <span className="text-xs font-medium whitespace-nowrap">Add New</span>
         </button>
       </div>
+
+      {/* Divider */}
       {fields.length > 0 && (
-        <div className="w-2/6 flex">
-          <div className="w-px relative h-84 -rotate-90 bg-gray-300 py-4 ml-30" />
+        <div className="w-1/6 flex items-center justify-center">
+          {/* <div className="w-px relative h-84 -rotate-90 bg-gray-300 py-4 ml-30" /> */}
+          <ArrowLine direction="right" length={210} className="ml-0 w-full" />
         </div>
       )}
+
+      {/* Events */}
       <div
-        className={`space-y-2 w-3/6 z-10 p-4 pb-8  max-h-[336px] rounded-lg  ${
-          fields.length > 0 &&
-          "border border-gray-300 bg-gray-50 overflow-y-scroll"
+        className={`space-y-2 w-4/6 z-10 p-4 pb-8 max-h-[336px] scrollbar-thin rounded-lg ${
+          fields.length > 0 ? "border border-gray-300  overflow-y-scroll" : ""
         }`}
       >
         {fields.map((field, index) => (

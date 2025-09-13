@@ -19,7 +19,7 @@ interface AttachmentInputProps<T extends FieldValues> {
   required?: boolean;
   imagePreview?: boolean;
   accept?: string;
-  onUpload?: (file: File | null) => void; // Optional callback for custom upload action
+  onUpload?: (file: File | null) => void;
 }
 
 const AttachmentInput = <T extends FieldValues>({

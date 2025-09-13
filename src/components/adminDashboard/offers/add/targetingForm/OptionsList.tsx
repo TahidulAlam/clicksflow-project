@@ -49,9 +49,9 @@ export default function OptionsList<T>({
           return (
             <div
               key={label}
-              className="flex justify-between text-base items-center px-1 py-1 bg-gray-50 border border-gray-300 rounded"
+              className="flex justify-between text-base items-center px-2 py-0.5 bg-gray-50 border border-gray-300 rounded"
             >
-              <span className="text-md text-gray-700">{label}</span>
+              <span className="text-xs text-gray-700">{label}</span>
               <div className="flex gap-2">
                 <button
                   type="button"

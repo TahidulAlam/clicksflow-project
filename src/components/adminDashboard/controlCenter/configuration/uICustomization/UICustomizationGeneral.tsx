@@ -49,7 +49,6 @@ const UICustomizationGeneral: React.FC<UICustomizationGeneralProps> = ({
         {(methods) => {
           const {
             reset,
-
             formState: { isSubmitting },
           } = methods;
 

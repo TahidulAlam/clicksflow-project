@@ -8,6 +8,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import toast from "react-hot-toast";
 import ThumbnailModal from "./ThumbnailModal";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Column {
   header: string;
@@ -16,6 +17,9 @@ interface Column {
   fixed?: "left" | "right";
   width?: string;
   stickyAfter?: number;
+  rowActions?: boolean;
+  headerClassName?: string;
+  cellClassName?: string;
   cell?: (row: any) => React.ReactNode;
 }
 
@@ -197,7 +201,7 @@ const ManagePage = () => {
     {
       header: "ID",
       accessor: "id",
-      width: "50px",
+      width: "30px",
       fixed: "left",
       searchable: false,
     },
@@ -205,6 +209,7 @@ const ManagePage = () => {
       header: "Thumbnail",
       accessor: "thumbnail",
       width: "80px",
+
       stickyAfter: 1,
       cell: (row) => (
         <button
@@ -232,6 +237,14 @@ const ManagePage = () => {
       stickyAfter: 0,
       fixed: "left",
       searchable: true,
+      cell: (row) => (
+        <Link
+          href={`/admin/offers/list/${row.id}`}
+          // className="text-blue-600 hover:underline"
+        >
+          {row.name}
+        </Link>
+      ),
     },
     {
       header: "Visibility",
@@ -310,6 +323,8 @@ const ManagePage = () => {
         showfilter={true}
         filterLabel="All"
         enableRowSelection={true}
+        showRowCount={true}
+        // initialPageSize={10}
         pageSizeOptions={[5, 10, 20, 50, 100]}
       />
 

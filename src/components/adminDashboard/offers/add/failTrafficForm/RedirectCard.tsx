@@ -4,6 +4,8 @@ import TextInput from "@/components/shared/forms/TextInput";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { FiTrash2, FiMove } from "react-icons/fi";
 import { FieldError, FieldErrors } from "react-hook-form";
+import ArrowLine from "@/components/shared/ArrowLine";
+import ArrowBox from "@/components/shared/ArrowBox";
 
 type RedirectCardProps = {
   index: number;
@@ -41,7 +43,7 @@ export default function RedirectCard({
   const fieldErrors = (errors?.redirects as FieldErrors[] | undefined)?.[index];
 
   return (
-    <div className="relative border border-gray-300 bg-white rounded-md p-4 shadow-sm space-y-4">
+    <div className="relative border border-gray-300  rounded-md p-4 space-y-4">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div className="text-gray-400 cursor-move">
@@ -113,39 +115,54 @@ export default function RedirectCard({
       />
 
       {/* Toggles and Partners Input */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ToggleSwitch
-          label="Pay Partner"
-          checked={!!payPartner}
-          onChange={(val) => setValue(`redirects.${index}.payPartner`, val)}
-          disabled={isSubmitting}
-        />
+      <div className="">
+        <div className="my-4">
+          <ToggleSwitch
+            label="Pay Partner"
+            checked={!!payPartner}
+            onChange={(val) => setValue(`redirects.${index}.payPartner`, val)}
+            disabled={isSubmitting}
+          />
+        </div>
 
         <Controller
           control={control}
           name={`redirects.${index}.applyToAllPartners`}
           render={({ field }) => (
             <>
-              <ToggleSwitch
-                label="Apply to all Partners"
-                checked={field.value}
-                onChange={field.onChange}
-                disabled={isSubmitting}
-              />
-              {field.value && (
-                <TextInput
-                  name={`redirects.${index}.partners`}
-                  label="Partners"
-                  register={register}
-                  errors={
-                    fieldErrors?.partners
-                      ? { partners: fieldErrors.partners }
-                      : undefined
-                  }
-                  required
+              <div className="flex lg:flex-row flex-col lg:items-center items-start lg:my-8 my-4">
+                <ToggleSwitch
+                  label="Apply to all Partners"
+                  checked={field.value}
+                  onChange={field.onChange}
                   disabled={isSubmitting}
+                  className="lg:absolute static z-10 gap-2 flex flex-col items-start"
                 />
-              )}
+                {field.value && (
+                  <ArrowLine
+                    direction="left"
+                    length={150}
+                    className="lg:relative static  mt-5 lg:block hidden"
+                  />
+                )}
+                {field.value && <ArrowLine className="lg:hidden block ml-5" />}
+                {field.value && (
+                  <ArrowBox className=" mt-0 border border-gray-300 rounded-xl p-4 w-full z-10">
+                    <TextInput
+                      name={`redirects.${index}.partners`}
+                      label="Partners"
+                      register={register}
+                      errors={
+                        fieldErrors?.partners
+                          ? { partners: fieldErrors.partners }
+                          : undefined
+                      }
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </ArrowBox>
+                )}
+              </div>
             </>
           )}
         />

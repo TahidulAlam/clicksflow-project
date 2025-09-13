@@ -25,7 +25,7 @@ const DirectMessage = () => {
             </Link>
           </div>
         </div>
-        <div className="border-t-2 my-2 border-gray-300"></div>
+        <div className="border-t-2 my-4 border-gray-300"></div>
         <div className="flex justify-between">
           <div>
             <h1 className="text-gray-500">Offer Details</h1>

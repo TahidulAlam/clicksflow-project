@@ -11,6 +11,7 @@ import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import NumberInput from "@/components/shared/forms/NumberInput";
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
+import ArrowLine from "@/components/shared/ArrowLine";
 
 interface ConversionTimeSectionProps {
   control: Control<AttributionFormData>;
@@ -41,14 +42,12 @@ export const ConversionTimeSection = ({
               disabled={isSubmitting || isLoading}
               aria-label="Enable Click to Conversion Time"
             />
-            {field.value && (
-              <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
-            )}
+            {field.value && <ArrowLine />}
             {field.value && (
               <FlexRow
                 cols={{ base: 1, sm: 1, md: 1, lg: 1 }}
                 gap="gap-4"
-                className="mb-4 bg-gray-50 border border-gray-300 p-4 rounded-lg"
+                className="mb-4  border border-gray-300 p-4 rounded-lg"
               >
                 <Controller
                   control={control}

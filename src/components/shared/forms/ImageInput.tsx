@@ -42,7 +42,7 @@ const ImageInput = <T extends FieldValues>({
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 my-4">
       <label htmlFor={name} className="text-sm font-medium text-gray-700">
         {label} {required && <span className="text-red-600">*</span>}
       </label>

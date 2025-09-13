@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowLine from "@/components/shared/ArrowLine";
 import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import DatePickerWrapper from "@/components/shared/calender/DatePickerWrapper";
 import React, { useState } from "react";
@@ -35,22 +36,22 @@ const ExpiresDate: React.FC<ExpiresDateProps> = ({
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-start w-full">
+    <div className="flex flex-col lg:flex-row lg:justify-items-start lg:items-center  w-full lg:my-0 my-4">
       {/* Toggle Section */}
-      <div className="z-10 pt-4 lg:pr-0 pr-4">
+      <div className={`z-10 ${showSelect ? "-mt-5" : ""}`}>
         <ToggleSwitch label="Expires" checked={toggle} onChange={setToggle} />
       </div>
 
-      {/* Divider */}
       {showSelect && (
-        <div
-          className="
-           relative lg:w-20 lg:h-px bg-gray-300 lg:my-auto lg:mt-[53px]
-            w-px h-5 my-0 mx-0 ml-5 lg:ml-0
-          "
+        <ArrowLine length={80} direction="left" className="lg:block hidden " />
+      )}
+      {showSelect && (
+        <ArrowLine
+          length={20}
+          direction="down"
+          className="block lg:hidden ml-5"
         />
       )}
-
       {/* Date Picker Section */}
       {showSelect && (
         <div className="w-full lg:mt-2 mt-0 z-10 p-4 border border-gray-300 rounded-lg bg-[#F2F7FD]">

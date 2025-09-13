@@ -90,6 +90,7 @@ const TrafficFilteringModal: React.FC<TrafficFilteringModalProps> = ({
       onClose={handleClose}
       title={defaultData ? "Edit Event" : "Add New Event"}
       size="xl"
+      position="top"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <p className="text-sm text-gray-600">

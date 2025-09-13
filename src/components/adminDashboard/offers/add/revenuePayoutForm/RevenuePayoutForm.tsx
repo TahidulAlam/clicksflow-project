@@ -18,6 +18,7 @@ import {
   RevenueEventData,
   formSchema as eventFormSchema,
 } from "@/components/adminDashboard/offers/add/revenuePayoutForm/RevenueAddModal";
+import Container from "@/components/shared/container/Container";
 
 export const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
@@ -124,7 +125,16 @@ const RevenuePayoutForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <Container>
+      <span className="text-xs text-gray-600">
+        {" "}
+        <span className="bg-blue-950 py-0.5 text-[10px] px-[6px] rounded-full text-white">
+          {" "}
+          i{" "}
+        </span>{" "}
+        Fields with an asterisk (<span className="text-red-600">*</span>) are
+        mandatory{" "}
+      </span>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <input type="hidden" {...register("events")} />
 
@@ -174,7 +184,7 @@ const RevenuePayoutForm: React.FC = () => {
         />
 
         {/* Toggles */}
-        <div className="flex flex-wrap gap-6 bg-gray-50 p-4 rounded-md">
+        <div className="flex flex-wrap gap-6 rounded-md">
           <ToggleSwitch
             label="Manually Approve Conv."
             checked={watch("manualApproval")}
@@ -199,6 +209,7 @@ const RevenuePayoutForm: React.FC = () => {
           <h2 className="text-lg font-semibold">Additional Events</h2>
           <PrimaryBtn
             variant="primary"
+            className="text-xs !px-2"
             onClick={() => {
               setIsEventModalOpen(true);
               setEditingIndex(null);
@@ -209,8 +220,8 @@ const RevenuePayoutForm: React.FC = () => {
           </PrimaryBtn>
         </div>
 
-        <div className="border border-gray-300 rounded-md max-h-[500px] overflow-auto">
-          <table className="w-full border-separate border-spacing-0 text-left text-xs table-auto overflow-x-scroll">
+        <div className="border border-gray-300 rounded-md max-h-[500px] overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+          <table className="w-full border-separate border-spacing-0 text-left text-xs whitespace-nowrap table-auto    overflow-x-scroll">
             <thead className="bg-gray-100 text-gray-600 border border-gray-400">
               <tr>
                 <th className="p-2">Name</th>
@@ -296,7 +307,7 @@ const RevenuePayoutForm: React.FC = () => {
         defaultData={editingIndex !== null ? events[editingIndex] : undefined}
         isLoading={isSubmitting}
       />
-    </div>
+    </Container>
   );
 };
 

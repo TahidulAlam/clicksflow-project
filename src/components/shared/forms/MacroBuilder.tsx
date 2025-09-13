@@ -271,7 +271,7 @@ const MacroBuilder: React.FC<MacroBuilderProps> = ({
   const errorId = error ? `${textareaId}-error` : undefined;
 
   return (
-    <div className={"space-y-2" + (className ? ` ${className}` : "")}>
+    <div className={"space-y-2 my-4" + (className ? ` ${className}` : "")}>
       <div
         className={`flex items-center ${
           showDropdownButton ? "justify-between" : ""

@@ -124,6 +124,7 @@ import { useFieldArray, UseFormReturn, Path } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { FormData } from "../../adminDashboard/offers/add/trackingAndControlForm/TrackingControlForm";
+import ArrowLine from "../ArrowLine";
 
 interface DynamicInputListProps {
   form: UseFormReturn<FormData>;
@@ -164,34 +165,32 @@ const DynamicInputList: React.FC<DynamicInputListProps> = ({
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex  my-4">
       {/* Add New Button */}
-      <div className="w-1/6 flex items-center justify-between">
+      <div className="w-1/6 flex items-center ">
         <button
           type="button"
           onClick={handleAdd}
-          className="flex items-center bg-gray-50 z-10 border border-gray-300 rounded-lg p-1 gap-2 text-blue-600 hover:text-blue-800 disabled:text-gray-400 transition-colors"
+          className="flex px-1.5 h-[30px] items-center bg-gray-50 z-10 border border-gray-300 rounded-lg  gap-2 text-gray-800 disabled:text-gray-400 transition-colors text-xs w-full justify-center"
           disabled={isDisabled || isSubmitting}
           aria-label={`Add new ${label.toLowerCase()}`}
         >
-          <FaPlus size={16} />
-          <span className="text-sm font-medium">Add New</span>
+          <FaPlus size={12} />
+          <span className="text-xs font-medium whitespace-nowrap">Add New</span>
         </button>
       </div>
 
       {/* Divider Line (optional visual) */}
       {fields.length > 0 && (
-        <div className="w-2/6 flex">
-          <div className="w-px relative h-84 -rotate-90 bg-gray-300 py-4 ml-30" />
+        <div className="w-1/6 flex items-center justify-center">
+          <ArrowLine direction="right" length={210} className="ml-0 w-full" />
         </div>
       )}
 
       {/* Dynamic Input List Section */}
       <div
-        className={`w-3/6 z-10 p-4 pb-8 overflow-y-scroll max-h-[336px] rounded-lg ${
-          fields.length > 0
-            ? "space-y-2  border border-gray-300 bg-gray-50"
-            : "fixed"
+        className={`w-4/6 z-10 p-4 pb-8 overflow-y-scroll scrollbar-thin max-h-[336px] rounded-lg ${
+          fields.length > 0 ? "space-y-2  border border-gray-300" : "fixed"
         }`}
       >
         {fields.map((field, index) => (
@@ -200,7 +199,7 @@ const DynamicInputList: React.FC<DynamicInputListProps> = ({
               <input
                 type="text"
                 id={`${fieldName}.${index}.value`}
-                className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-l-md border-r-0 focus:border-indigo-500 focus:ring-indigo-500 text-sm disabled:bg-gray-100"
+                className="block px-1 w-full h-[30px] border border-gray-300 bg-white rounded-l-md border-r-0 focus:border-indigo-500 focus:ring-indigo-500 text-sm disabled:bg-gray-100"
                 placeholder={placeholder}
                 value={
                   (watch(`${fieldName}.${index}.value` as Path<FormData>) as
@@ -225,7 +224,7 @@ const DynamicInputList: React.FC<DynamicInputListProps> = ({
             <button
               type="button"
               onClick={() => handleRemove(index)}
-              className="p-2 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors"
+              className="h-[30px] w-10 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors text-center flex items-center justify-center"
               disabled={isDisabled || isSubmitting}
               aria-label={`Remove ${label} ${index + 1}`}
             >

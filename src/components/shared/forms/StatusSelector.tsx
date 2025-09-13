@@ -21,10 +21,12 @@ interface StatusSelectorProps<T extends Record<string, unknown>> {
   watch?: UseFormWatch<T>;
   errors?: FieldErrors<T>;
   value?: string;
+  className?: string;
   onChange?: (val: string) => void;
   isSubmitting?: boolean;
   isLoading?: boolean;
   required?: boolean;
+  showDot?: boolean;
   options?: StatusOption[];
 }
 
@@ -43,9 +45,11 @@ const StatusSelector = <T extends Record<string, unknown>>({
   errors,
   value,
   onChange,
+  className = "",
   isSubmitting = false,
   required = false,
   isLoading = false,
+  showDot = false,
   options = defaultOptions,
 }: StatusSelectorProps<T>) => {
   const disabled = isSubmitting || isLoading;
@@ -96,19 +100,19 @@ const StatusSelector = <T extends Record<string, unknown>>({
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <label className="text-xs font-semibold text-gray-800 capitalize">
+    <div className={`flex flex-col lg:gap-2 gap-1 my-4 ${className || ""}`}>
+      <label className="text-xs font-semibold text-gray-800 capitalize whitespace-nowrap">
         {label || fieldName}
         {required && <span className="text-red-700">*</span>}
       </label>
 
-      <div className="flex gap-2 bg-gray-100 p-2 rounded-lg">
-        {statusOptions.map((option) => (
+      <div className="flex gap-2 bg-gray-100 p-1 rounded-lg border-gray-300 border">
+        {statusOptions?.map((option) => (
           <button
             key={option.value}
             type="button"
             onClick={() => handleSelect(option.value)}
-            className={`flex-1 text-xs flex items-center justify-center gap-2 px-3 py-[8px] rounded-md transition
+            className={`flex-1 text-xs flex items-center justify-center gap-2 lg:px-[4px] px-2 py-1 whitespace-nowrap rounded-md transition
               ${
                 currentValue === option.value
                   ? "bg-white border border-gray-300"
@@ -118,10 +122,10 @@ const StatusSelector = <T extends Record<string, unknown>>({
             `}
             disabled={disabled}
           >
-            {option.dotColor && (
+            {showDot && option?.dotColor && (
               <span className={`w-2.5 h-2.5 rounded-full ${option.dotColor}`} />
             )}
-            <span>{option.label}</span>
+            <span className="text-gray-500 text-xs">{option.label}</span>
           </button>
         ))}
       </div>

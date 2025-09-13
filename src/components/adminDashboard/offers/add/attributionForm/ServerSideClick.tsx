@@ -1,8 +1,10 @@
+"use client";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { AttributionFormData } from "./validationSchemas";
 import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import MacroBuilder from "@/components/shared/forms/MacroBuilder";
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
+import ArrowLine from "@/components/shared/ArrowLine";
 
 interface ServerSideClickSectionProps {
   control: Control<AttributionFormData>;
@@ -31,9 +33,7 @@ const ServerSideClick = ({
               disabled={isSubmitting || isLoading}
               aria-label="Enable Server-Side Click"
             />
-            {field.value && (
-              <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
-            )}
+            {field.value && <ArrowLine />}
             {field.value && (
               <div className="bg-gray-50 border border-gray-300 p-4 rounded-lg">
                 <Controller

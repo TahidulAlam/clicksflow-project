@@ -99,6 +99,7 @@ const CreativesModal: React.FC<CreativesModalProps> = ({
       }}
       title={defaultData ? "Edit Creative" : "Add New Creative"}
       size="xl"
+      position="top"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <p className="text-sm text-gray-600">

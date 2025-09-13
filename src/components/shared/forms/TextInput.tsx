@@ -107,7 +107,7 @@ const TextInput = <T extends FieldValues>({
   );
 
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col gap-2 my-4 w-full ${className}`}>
       <label htmlFor={inputId} className="text-xs font-semibold text-gray-800">
         {label} {required && <span className="text-red-600">*</span>}
       </label>

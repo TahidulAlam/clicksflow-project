@@ -7,6 +7,7 @@ import MacroBuilder from "@/components/shared/forms/MacroBuilder";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import NumberInput from "@/components/shared/forms/NumberInput";
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
+import ArrowLine from "@/components/shared/ArrowLine";
 
 interface ViewThroughSectionProps {
   control: Control<AttributionFormData>;
@@ -35,14 +36,12 @@ export const ViewThroughSection = ({
               disabled={isSubmitting || isLoading}
               aria-label="Enable View-Through"
             />
-            {field.value && (
-              <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
-            )}
+            {field.value && <ArrowLine />}
             {field.value && (
               <FlexRow
                 cols={{ base: 1, sm: 1, md: 1, lg: 1 }}
                 gap="0px"
-                className=" space-y-4 bg-gray-50 border border-gray-300 p-4 rounded-lg"
+                className=" space-y-4 border border-gray-300 p-4 rounded-lg"
               >
                 <Controller
                   control={control}
@@ -75,15 +74,13 @@ export const ViewThroughSection = ({
                           disabled={isSubmitting || isLoading}
                           aria-label="Enable View-Through Lookback Window"
                         />
-                        {lookbackField.value && (
-                          <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
-                        )}
+                        {lookbackField.value && <ArrowLine />}
 
                         {lookbackField.value && (
                           <FlexRow
                             cols={{ base: 1, sm: 1, md: 1, lg: 1 }}
                             gap="0px"
-                            className="bg-gray-50 border border-gray-300 p-4 rounded-lg"
+                            className=" border border-gray-300 p-4 rounded-lg"
                           >
                             <Controller
                               control={control}

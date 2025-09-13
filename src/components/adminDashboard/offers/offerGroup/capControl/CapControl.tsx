@@ -104,7 +104,7 @@ const CapControl = () => {
     <Container>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         {/* Enable Caps */}
-        <span className="text-xs my-2">
+        <span className="text-xs my-4">
           Fields with an asterisk (<span className="text-red-700">*</span>) are
           required
         </span>

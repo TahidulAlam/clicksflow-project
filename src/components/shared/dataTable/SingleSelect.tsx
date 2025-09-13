@@ -132,7 +132,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   return (
     <div
       ref={dropdownRef}
-      className={`flex flex-col gap-2 relative ${className}`}
+      className={`flex flex-col gap-2 relative my-4 ${className}`}
       role="combobox"
       aria-expanded={showDropdown}
       aria-controls={dropdownId}

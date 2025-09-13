@@ -1,17 +1,20 @@
 "use client";
+
 import React from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
+import { Controller, UseFormReturn, Control } from "react-hook-form";
+
+import FormActions from "@/components/shared/forms/FormActions";
+import FormArea from "@/components/shared/forms/FormArea";
 import Container from "@/components/shared/container/Container";
 import TextInput from "@/components/shared/forms/TextInput";
 import StatusSelector from "@/components/shared/forms/StatusSelector";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
-import FormActions from "@/components/shared/forms/FormActions";
 import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import ImageInput from "@/components/shared/forms/ImageInput";
 import CreativeEmail from "../../add/creativesForm/CreativeEmail";
 
+// Options
 const typeOptions = [
   { value: "archive", label: "Archive" },
   { value: "email", label: "Email" },
@@ -22,29 +25,28 @@ const typeOptions = [
   { value: "thumbnail", label: "Thumbnail" },
   { value: "video", label: "Video" },
 ];
+
 const offerOptions = [
   { value: "profitNXT", label: "Profit NXT" },
   { value: "clicksAdv", label: "Clicks Adv" },
 ];
+
 const visibilityStatus = [
   { value: "active", label: "Active", dotColor: "bg-green-500" },
   { value: "paused", label: "Paused", dotColor: "bg-purple-500" },
   { value: "deleted", label: "Deleted", dotColor: "bg-red-500" },
 ];
 
-export const formSchema = z.object({
+// Schema + types
+const SchemaName = z.object({
   creativeName: z.string().min(2, "Name must be at least 2 characters").max(50),
   status: z.string().min(1, "Status is required"),
-  offer: z.string().min(1, "Status is required"),
+  offer: z.string().min(1, "Offer is required"),
   visibleToPartner: z.boolean().optional(),
-  // tags: z.array(z.string()).optional(),
   type: z.enum(
     ["archive", "email", "html", "image", "link", "text", "thumbnail", "video"],
-    {
-      required_error: "Type is required",
-    }
+    { required_error: "Type is required" }
   ),
-
   // File inputs or content fields
   archiveImage: z.any().optional(),
   subject: z.string().optional(),
@@ -52,7 +54,7 @@ export const formSchema = z.object({
   htmlContent: z.string().optional(),
 });
 
-export type FormData = z.infer<typeof formSchema>;
+type FormType = z.infer<typeof SchemaName>;
 
 interface CreativesAddProps {
   onSubmitSuccess?: () => void;
@@ -63,165 +65,174 @@ const CreativesAdd: React.FC<CreativesAddProps> = ({
   onSubmitSuccess,
   isLoading = false,
 }) => {
-  const {
-    setValue,
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-    control,
-    watch,
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      creativeName: "",
-      status: "",
-      // tags: [],
-    },
-  });
-
-  const selectedType = watch("type");
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      console.log("Submitted Data:", data);
-      reset();
-      onSubmitSuccess?.();
-    } catch (error) {
-      console.error("Submission failed:", error);
-    }
+  const handleSubmit = async (data: FormType) => {
+    console.log("Submitted Data:", data);
+    onSubmitSuccess?.();
   };
 
   return (
-    <Container className="bg-white">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
-        noValidate
+    <Container>
+      {/* Ensure FormArea is generic so methods/control are typed as FormType */}
+      <FormArea
+        schema={SchemaName}
+        defaultValues={{
+          creativeName: "",
+          status: "",
+          offer: "",
+          type: "archive",
+          visibleToPartner: false,
+        }}
+        onSubmit={handleSubmit}
       >
-        <span className="text-xs">
-          Fields with an asterisk (<span className="text-red-700">*</span>) are
-          required
-        </span>
+        {(methods) => {
+          const typedMethods = methods as unknown as UseFormReturn<FormType>;
+          const {
+            register,
+            control,
+            watch,
+            setValue,
+            reset,
+            formState: { errors, isSubmitting },
+          } = typedMethods;
 
-        <TextInput
-          name="creativeName"
-          label="Creative Name"
-          register={register}
-          errors={errors}
-          required
-          disabled={isSubmitting}
-        />
+          // control is typed as Control<FormType>
+          // (if FormArea already types methods correctly you can remove the `as` assertion)
+          const typedControl = control as unknown as Control<FormType>;
 
-        <StatusSelector
-          setValue={setValue}
-          errors={errors}
-          isSubmitting={isSubmitting}
-          isLoading={isLoading}
-          options={visibilityStatus}
-        />
-        <div className="flex gap-2">
-          <div className="w-1/5">
-            <Controller
-              name="type"
-              control={control}
-              render={({ field }) => (
-                <SingleSelect
-                  id="type"
-                  label="Type"
-                  required
-                  showSearch={false}
-                  options={typeOptions}
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={errors.type}
-                  isDisabled={isSubmitting}
+          const selectedType = watch("type");
+
+          return (
+            <>
+              <TextInput
+                name="creativeName"
+                label="Creative Name"
+                register={register}
+                errors={errors}
+                required
+                disabled={isSubmitting || isLoading}
+              />
+
+              <StatusSelector
+                setValue={setValue}
+                errors={errors}
+                isSubmitting={isSubmitting}
+                isLoading={isLoading}
+                options={visibilityStatus}
+              />
+
+              {/* Type + Offer */}
+              <div className="flex gap-2">
+                <div className="w-1/5">
+                  <Controller
+                    control={typedControl}
+                    name="type"
+                    render={({ field }) => (
+                      <SingleSelect
+                        id="type"
+                        label="Type"
+                        required
+                        showSearch={false}
+                        options={typeOptions}
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={errors.type}
+                        isDisabled={isSubmitting || isLoading}
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className="w-4/5">
+                  <Controller
+                    control={typedControl}
+                    name="offer"
+                    render={({ field }) => (
+                      <SingleSelect
+                        id="offer"
+                        label="Offer"
+                        required
+                        options={offerOptions}
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={errors.offer}
+                        isDisabled={isSubmitting || isLoading}
+                      />
+                    )}
+                  />
+                </div>
+              </div>
+
+              {/* Visible To Partner */}
+              <div className="flex items-center gap-4">
+                <ToggleSwitch
+                  label="Visible To Partner"
+                  checked={watch("visibleToPartner") ?? false}
+                  onChange={(val) => setValue("visibleToPartner", val)}
+                  disabled={isSubmitting || isLoading}
                 />
-              )}
-            />
-          </div>
-          <div className="w-4/5">
-            <Controller
-              name="offer"
-              control={control}
-              render={({ field }) => (
-                <SingleSelect
-                  id="offer"
-                  label="Offer"
-                  required
-                  //   placeholder="Archive"
-                  options={offerOptions}
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={errors.offer}
-                  isDisabled={isSubmitting}
-                />
-              )}
-            />
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <ToggleSwitch
-            label="Visible To Partner"
-            checked={watch("visibleToPartner") ?? false}
-            onChange={(val) => setValue("visibleToPartner", val)}
-            disabled={isSubmitting}
-          />
-        </div>
-        {/* Dynamic Creative Inputs */}
-        <div className="w-full">
-          {selectedType === "archive" && (
-            <ImageInput
-              name="archiveImage"
-              label="Archive Image"
-              register={register}
-              errors={errors}
-              required
-              disabled={isSubmitting || isLoading}
-            />
-          )}
+              </div>
 
-          {(selectedType === "email" || selectedType === "link") && (
-            <CreativeEmail
-              register={register}
-              errors={errors}
-              control={control}
-              disabled={isSubmitting || isLoading}
-            />
-          )}
+              {/* Dynamic Creative Inputs */}
+              <div className="w-full">
+                {selectedType === "archive" && (
+                  <ImageInput
+                    name="archiveImage"
+                    label="Archive Image"
+                    register={register}
+                    errors={errors}
+                    required
+                    disabled={isSubmitting || isLoading}
+                  />
+                )}
 
-          {selectedType === "html" && (
-            <CreativeEmail
-              register={register}
-              errors={errors}
-              control={control}
-              html={true}
-              disabled={isSubmitting || isLoading}
-            />
-          )}
+                {(selectedType === "email" || selectedType === "link") && (
+                  <CreativeEmail
+                    register={register}
+                    errors={errors}
+                    control={typedControl}
+                    disabled={isSubmitting || isLoading}
+                  />
+                )}
 
-          {["image", "text", "thumbnail", "video"].includes(
-            selectedType || ""
-          ) && (
-            <ImageInput
-              name="archiveImage"
-              label={
-                selectedType.charAt(0).toUpperCase() + selectedType.slice(1)
-              }
-              register={register}
-              errors={errors}
-              required
-              disabled={isSubmitting || isLoading}
-            />
-          )}
-        </div>
+                {selectedType === "html" && (
+                  <CreativeEmail
+                    register={register}
+                    errors={errors}
+                    control={typedControl}
+                    html
+                    disabled={isSubmitting || isLoading}
+                  />
+                )}
 
-        <FormActions
-          isSubmitting={isSubmitting}
-          isLoading={isLoading}
-          onCancel={() => reset()}
-        />
-      </form>
+                {["image", "text", "thumbnail", "video"].includes(
+                  selectedType ?? ""
+                ) && (
+                  <ImageInput
+                    name="archiveImage"
+                    label={
+                      selectedType
+                        ? selectedType.charAt(0).toUpperCase() +
+                          selectedType.slice(1)
+                        : "Upload File"
+                    }
+                    register={register}
+                    errors={errors}
+                    required
+                    disabled={isSubmitting || isLoading}
+                  />
+                )}
+              </div>
+
+              {/* Actions */}
+              <FormActions
+                isSubmitting={isSubmitting}
+                isLoading={isLoading}
+                onCancel={() => reset()}
+              />
+            </>
+          );
+        }}
+      </FormArea>
     </Container>
   );
 };

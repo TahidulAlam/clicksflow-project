@@ -564,8 +564,8 @@ const DataList = <T extends Record<string, unknown>>({
       {title && <h2 className="text-xl font-semibold">{title}</h2>}
 
       {/* Toolbar */}
-      <div className="flex flex-col h-[30px] sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-        <div className="flex flex-wrap gap-2">
+      <div className="flex flex-row lg:justify-between justify-evenly items-start sm:items-center lg:gap-4 gap-2 lg:mb-4 mb-2">
+        <div className="flex lg:gap-2 gap-1">
           {showLinkButton && addLink && (
             <Link
               href={addLink}
@@ -574,10 +574,10 @@ const DataList = <T extends Record<string, unknown>>({
             >
               {addLinkIcon && (
                 <>
-                  <span className="text-md h-[30px] p-1">{addLinkIcon}</span>
+                  <span className="text-md h-[30px] p-1 ">{addLinkIcon}</span>
                 </>
               )}
-              <span>{addLinkLabel}</span>
+              <span className="whitespace-nowrap">{addLinkLabel}</span>
             </Link>
           )}
           {showfilter && (
@@ -606,9 +606,9 @@ const DataList = <T extends Record<string, unknown>>({
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
+        <div className="flex sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto ">
           {showSearchBar && (
-            <div className="flex w-full sm:w-64">
+            <div className="flex w-full sm:w-auto ">
               <input
                 ref={searchInputRef}
                 type="text"
@@ -631,7 +631,7 @@ const DataList = <T extends Record<string, unknown>>({
           {showColumnToggle && (
             <MultiLevelDropdown
               label={<BsThreeDotsVertical />}
-              labelClass="bg-white px-2 h-[30px] rounded border"
+              labelClass="bg-white px-2 h-[30px] rounded border hidden lg:block"
               position="bottom-right"
               submenuPosition="left"
               menuItems={[

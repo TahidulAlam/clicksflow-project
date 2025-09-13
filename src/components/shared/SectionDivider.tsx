@@ -12,12 +12,12 @@ const SectionDivider: React.FC<SectionDividerProps> = ({
   label,
   backgroundClass = "bg-[#F2F7FD]",
   border = false,
-  padding = "py-6 px-0",
+  padding = "py-2 px-0",
 }) => {
   return (
     <div
       className={clsx(
-        "relative w-full lg:my-5 my-1",
+        "relative w-full lg:my-1.5 my-0.5",
         backgroundClass,
         padding,
         border && "border border-red-500"

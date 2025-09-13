@@ -218,7 +218,7 @@ const TagsInput = <T extends FieldValues>({
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
+    <div ref={containerRef} className={`relative my-4 ${className}`}>
       {label && (
         <label
           htmlFor={inputId}
@@ -236,7 +236,7 @@ const TagsInput = <T extends FieldValues>({
       )}
 
       <div
-        className={`flex flex-wrap items-center lg:h-[30px] h-[30px] gap-2 px-2 py-[6px] border rounded-md focus:shadow-md focus:outline-none focus:ring-0 ${
+        className={`flex flex-wrap text-sm items-center h-[30px] gap-2 px-2  border rounded-md focus:shadow-md focus:outline-none focus:ring-0 ${
           disabled ? "bg-gray-100 cursor-not-allowed" : " border-gray-300"
         } ${error ? "border-red-500" : ""}`}
         aria-describedby={error ? `${inputId}-error` : undefined}

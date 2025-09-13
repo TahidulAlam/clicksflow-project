@@ -11,6 +11,7 @@ import NumberInput from "@/components/shared/forms/NumberInput";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import { AttributionFormData } from "./validationSchemas";
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
+import ArrowLine from "@/components/shared/ArrowLine";
 
 interface ThrottleRateSectionProps {
   control: Control<AttributionFormData>;
@@ -42,13 +43,14 @@ export const ThrottleRateSection = ({
               aria-label="Apply Throttle Rate"
             />
             {field.value && (
-              <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
+              // <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
+              <ArrowLine />
             )}
             {field.value && (
               <FlexRow
                 cols={{ base: 2, sm: 1, md: 2, lg: 2 }}
                 gap="gap-4"
-                className="mb-4 bg-gray-50 border border-gray-300 p-4 rounded-lg"
+                className="mb-4  border border-gray-300 p-4 rounded-lg"
               >
                 <Controller
                   control={control}
@@ -56,7 +58,6 @@ export const ThrottleRateSection = ({
                   render={({ field: statusField }) => (
                     <SingleSelect
                       id="conversionStatus"
-                      className="bg-white"
                       label="Conversion Status"
                       showSearch={false}
                       required

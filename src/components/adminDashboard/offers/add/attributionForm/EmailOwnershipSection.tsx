@@ -6,6 +6,7 @@ import ToggleSwitch from "@/components/shared/buttons/ToggleSwitch";
 import SingleSelect from "@/components/shared/dataTable/SingleSelect";
 import NumberInput from "@/components/shared/forms/NumberInput";
 import FlexRow from "@/components/shared/responsibeForm/FlexRow";
+import ArrowLine from "@/components/shared/ArrowLine";
 
 interface EmailOwnershipSectionProps {
   control: Control<AttributionFormData>;
@@ -34,11 +35,9 @@ export const EmailOwnershipSection = ({
               disabled={isSubmitting || isLoading}
               aria-label="Enable Email Ownership"
             />
+            {field.value && <ArrowLine />}
             {field.value && (
-              <div className="w-px relative h-8 bg-gray-300 py-4 ml-5" />
-            )}
-            {field.value && (
-              <div className=" bg-gray-50 border border-gray-300 p-4 rounded-lg">
+              <div className=" border border-gray-300 p-4 rounded-lg">
                 <Controller
                   control={control}
                   name="emailAttributionMethod"

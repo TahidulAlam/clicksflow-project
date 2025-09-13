@@ -368,7 +368,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
           </h2>
         </div>
         <ul
-          className="bg-white max-h-[250px] overflow-y-auto border border-gray-300 rounded-b-lg py-2 px-3 min-w-max text-md text-[#1E3557]"
+          className="bg-white max-h-[250px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent
+                  active overflow-y-auto border border-gray-300 rounded-b-lg py-1 px-3 min-w-max text-md text-[#1E3557]"
           role="menu"
         >
           {subMenu?.map((sub) => {
@@ -376,8 +377,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
             return (
               <li
                 key={sub.title}
-                className={`whitespace-nowrap px-5 w-52 py-3 rounded-md ${
-                  active ? "bg-[#1E3557] text-white" : "hover:bg-zinc-100"
+                className={`whitespace-nowrap lg:px-5 py-3 w-52 lg:py-1.5 rounded-md  ? "bg-[#1E3557] text-white" : "hover:bg-zinc-100"
                 }`}
                 role="none"
               >

@@ -45,14 +45,14 @@ const ColorPickerButton: React.FC<ColorPickerButtonProps> = ({
 
   return (
     <div
-      className={`inline-flex items-center gap-2 ${className}`}
+      className={`inline-flex items-center gap-2 my-4 ${className}`}
       title={tooltip}
     >
       <button
         type="button"
         onClick={handleClick}
         disabled={disabled}
-        className={`flex items-center h-[38px] border border-gray-300 rounded-l-md text-sm  
+        className={`flex items-center h-[30px] border border-gray-300 rounded-l-md text-sm  
           transition focus:outline-none focus:ring-0
           ${disabled ? "bg-gray-100 cursor-not-allowed opacity-60" : "bg-white"}
           ${buttonClassName}`}

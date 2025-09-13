@@ -190,7 +190,7 @@ function ImageUploader<T extends FieldValues>({
   const error = errors?.[name];
 
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col my-4 gap-2 w-full ${className}`}>
       <label htmlFor={name} className="text-xs font-bold text-gray-800">
         {label} {required && <span className="text-red-600">*</span>}
       </label>

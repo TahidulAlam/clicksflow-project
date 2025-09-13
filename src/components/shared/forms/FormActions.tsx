@@ -47,7 +47,7 @@ const FormActions: React.FC<FormActionsProps> = ({
   onCancel,
 }) => {
   return (
-    <div className="flex justify-end gap-1">
+    <div className="flex justify-center gap-1 sticky bottom-0 right-3/12 p-4  bg-[#F2F7FD] z-10 border-t w-full border-t-gray-300">
       <button
         type="button"
         onClick={onCancel}

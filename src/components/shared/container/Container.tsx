@@ -263,9 +263,9 @@ const maxWidthMap: Record<NonNullable<ContainerProps["maxWidth"]>, string> = {
 const Container: React.FC<ContainerProps> = ({
   children,
   maxWidth = "2xl",
-  padding = "p-6",
+  padding = "lg:p-6 p-0.5",
   className,
-  mainClassName = "bg-[#F2F7FD] rounded-md border border-gray-300 pt-2",
+  mainClassName = "bg-[#F2F7FD] rounded-md  pt-2",
 }) => {
   const resolvedMaxWidth = maxWidthMap[maxWidth];
 

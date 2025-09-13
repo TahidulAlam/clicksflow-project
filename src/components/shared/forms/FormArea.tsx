@@ -78,7 +78,7 @@ const FormArea = <T extends ZodTypeAny>({
   defaultValues,
   onSubmit,
   children,
-  className = "flex flex-col gap-6",
+  className = "flex flex-col lg:gap-6 gap-1",
   formHeaderShow = true,
   methods,
 }: FormAreaProps<T>) => {
@@ -99,7 +99,7 @@ const FormArea = <T extends ZodTypeAny>({
         {formHeaderShow && (
           <span className="text-xs text-gray-600">
             {" "}
-            <span className="bg-blue-950 py-0.5 font-serif text-[10px] px-[6px] rounded-full text-white">
+            <span className="bg-blue-950 py-0.5 text-[10px] px-[6px] rounded-full text-white">
               {" "}
               i{" "}
             </span>{" "}

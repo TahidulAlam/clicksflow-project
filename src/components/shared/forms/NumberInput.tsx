@@ -47,7 +47,7 @@ const NumberInput = <T extends FieldValues>({
   const error = name ? errors[name] : undefined;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 my-4">
       <label htmlFor={id} className="text-xs font-semibold text-gray-800">
         {label} {required && <span className="text-red-700">*</span>}
       </label>

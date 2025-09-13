@@ -161,7 +161,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Scrollable Menu */}
         <div
-          className={`flex-1 lg:px-2 px-0 mt-[20px] lg:mx-[4px] mx-0 ${
+          className={`flex-1 lg:px-2 px-0 mt-[20px] lg:mx-[4px] mx-2.5 ${
             open ? "overflow-y-auto" : "overflow-visible"
           } scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-gray-100`}
         >

@@ -116,11 +116,12 @@ export const RevenueAddModal: React.FC<RevenueAddModalProps> = ({
           <ToggleSwitch
             label="Private"
             checked={isPrivate}
+            className="z-10"
             onChange={(val) => setValue("isPrivate", val)}
             disabled={isSubmitting || isLoading}
           />
           {!isPrivate && (
-            <div className="w-px relative h-5  bg-gray-300 -mt-3 py-4 ml-5" />
+            <div className="w-px relative h-5  bg-gray-300 -mt-3 py-4 ml-5 " />
           )}
           {/* -rotate-90 */}
           {!isPrivate && (

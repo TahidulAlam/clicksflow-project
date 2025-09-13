@@ -11,23 +11,19 @@ import {
 
 interface TextAreaInputProps<T extends FieldValues> {
   id?: string;
-  name?: Path<T>; // Optional for standalone usage
+  name?: Path<T>;
   label: string;
   className?: string;
   disabled?: boolean;
   required?: boolean;
   placeholder?: string;
   rows?: number;
-  // Controlled input support
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
-  // react-hook-form props (for direct register/errors passing)
   register?: UseFormRegister<T>;
   errors?: FieldErrors<T>;
-  // Error handling
   error?: string;
-  // Accessibility
   ariaLabel?: string;
 }
 
@@ -87,7 +83,7 @@ const TextAreaInput = <T extends FieldValues>({
   );
 
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col gap-2 my-4 w-full ${className}`}>
       <label htmlFor={inputId} className="text-xs font-medium text-gray-800">
         {label} {required && <span className="text-red-600">*</span>}
       </label>

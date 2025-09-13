@@ -74,6 +74,13 @@ body {
   --font-mono: var(--font-geist-mono); /* Geist Mono */
 }
 
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
 /* ===========================
    Base Styling
    =========================== */

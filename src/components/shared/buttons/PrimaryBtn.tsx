@@ -37,7 +37,7 @@ const PrimaryBtn = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const sizes = {
       sm: "text-xs px-3 py-1",
-      md: "text-sm px-[4px] py-[8px]",
+      md: "text-sm px-4 py-0.5",
       lg: "text-base px-5 py-[8px]",
       ghost: "text-sm px-2 py-1",
     };

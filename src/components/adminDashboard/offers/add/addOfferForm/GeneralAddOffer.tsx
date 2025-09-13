@@ -118,7 +118,7 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
   }, [image]);
 
   return (
-    <Container>
+    <Container maxWidth="full">
       <FormArea
         schema={schema}
         defaultValues={{
@@ -179,209 +179,211 @@ const GeneralAddOffer: React.FC<GeneralAddOfferProps> = ({
 
           return (
             <>
-              <TextInput
-                name="name"
-                label="Name"
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
+              <Container>
+                <TextInput
+                  name="name"
+                  label="Name"
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
 
-              <StatusSelector
-                label="Status"
-                fieldName="status"
-                options={statusOptions}
-                setValue={setValue}
-                errors={errors}
-                isSubmitting={isSubmitting}
-                isLoading={isLoading}
-              />
+                <StatusSelector
+                  label="Status"
+                  fieldName="status"
+                  options={statusOptions}
+                  setValue={setValue}
+                  errors={errors}
+                  isSubmitting={isSubmitting}
+                  isLoading={isLoading}
+                />
 
-              <div className="flex flex-col lg:flex-row gap-6">
-                {/* Left Column */}
-                <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                  <div className="flex flex-col gap-2">
-                    {/* Advertiser */}
-                    <div>
-                      <SingleSelect
-                        id="advertiser"
-                        label="Advertiser"
-                        options={advertiserOptions}
-                        value={advertiser}
-                        required
-                        onChange={(val) => setValue("advertiser", val)}
-                        error={errors.advertiser}
-                        customModalTrigger={
-                          <button
-                            type="button"
-                            onClick={() => setIsAdModalOpen(true)}
-                            className="text-xs text-blue-950"
-                          >
-                            + Add
-                          </button>
-                        }
-                      />
-                      <AddAdvertiserModal
-                        isOpen={isAdModalOpen}
-                        onClose={() => setIsAdModalOpen(false)}
-                      />
-                    </div>
-                    {/* Category */}
-                    <div>
-                      <SingleSelect
-                        id="category"
-                        label="Category"
-                        required
-                        options={categoryOptions}
-                        value={category}
-                        onChange={(val) => setValue("category", val)}
-                        error={errors.category}
-                        customModalTrigger={
-                          <button
-                            type="button"
-                            onClick={() => setIsCgModalOpen(true)}
-                            className="text-xs text-blue-950"
-                          >
-                            + Add
-                          </button>
-                        }
-                      />
-                      <AddCategoryModal
-                        isOpen={isCgModalOpen}
-                        onClose={() => setIsCgModalOpen(false)}
-                      />
-                    </div>
+                <div className="flex flex-col lg:flex-row gap-6">
+                  {/* Left Column */}
+                  <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                    <div className="flex flex-col gap-2">
+                      {/* Advertiser */}
+                      <div>
+                        <SingleSelect
+                          id="advertiser"
+                          label="Advertiser"
+                          options={advertiserOptions}
+                          value={advertiser}
+                          required
+                          onChange={(val) => setValue("advertiser", val)}
+                          error={errors.advertiser}
+                          customModalTrigger={
+                            <button
+                              type="button"
+                              onClick={() => setIsAdModalOpen(true)}
+                              className="text-xs text-blue-950"
+                            >
+                              + Add
+                            </button>
+                          }
+                        />
+                        <AddAdvertiserModal
+                          isOpen={isAdModalOpen}
+                          onClose={() => setIsAdModalOpen(false)}
+                        />
+                      </div>
+                      {/* Category */}
+                      <div>
+                        <SingleSelect
+                          id="category"
+                          label="Category"
+                          required
+                          options={categoryOptions}
+                          value={category}
+                          onChange={(val) => setValue("category", val)}
+                          error={errors.category}
+                          customModalTrigger={
+                            <button
+                              type="button"
+                              onClick={() => setIsCgModalOpen(true)}
+                              className="text-xs text-blue-950"
+                            >
+                              + Add
+                            </button>
+                          }
+                        />
+                        <AddCategoryModal
+                          isOpen={isCgModalOpen}
+                          onClose={() => setIsCgModalOpen(false)}
+                        />
+                      </div>
 
-                    {/* Currency */}
-                    <div>
-                      <SingleSelect
-                        id="currency"
-                        label="Default Currency"
-                        required
-                        options={currencyOptions}
-                        value={currency}
-                        onChange={(val) => setValue("currency", val)}
-                        error={errors.currency}
-                      />
+                      {/* Currency */}
+                      <div>
+                        <SingleSelect
+                          id="currency"
+                          label="Default Currency"
+                          required
+                          options={currencyOptions}
+                          value={currency}
+                          onChange={(val) => setValue("currency", val)}
+                          error={errors.currency}
+                        />
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Right Column */}
+                  <div className="w-full lg:w-1/2">
+                    <ImageUploader
+                      name="image"
+                      register={register}
+                      setValue={setValue}
+                      errors={errors}
+                      imagePreview={imagePreview}
+                    />
                   </div>
                 </div>
 
-                {/* Right Column */}
-                <div className="w-full lg:w-1/2">
-                  <ImageUploader
-                    name="image"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    imagePreview={imagePreview}
-                  />
+                <OfferGroupStatus
+                  toggle={toggle}
+                  setToggle={setToggle}
+                  showSelect={toggle}
+                  selectedValue={offerGroupStatus}
+                  onChange={(val: string) => setValue("offerGroupStatus", val)}
+                />
+
+                <Controller
+                  name="tags"
+                  control={control}
+                  render={({ field }) => (
+                    <TagsInput
+                      tags={field.value || []}
+                      setTags={(newTags) => field.onChange(newTags)}
+                      inputValue={inputValue}
+                      labelSpan={true}
+                      setInputValue={setInputValue}
+                    />
+                  )}
+                />
+
+                <MacroBuilder
+                  label="Base Destination URL "
+                  required
+                  url={url}
+                  setUrl={setUrl}
+                />
+
+                <TextInput
+                  name="appidentifier"
+                  label="App Identifier"
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
+                <TextInput
+                  name="previewurl"
+                  label="Preview URL"
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
+                <TextInput
+                  name="projectid"
+                  label="Project ID"
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
+
+                <TextAreaInput
+                  name="internalnotes"
+                  label="Internal Notes"
+                  rows={4}
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
+                <div className="flex w-full gap-4">
+                  <div className="w-1/2">
+                    <TextInput
+                      name="channels"
+                      label="Channels"
+                      register={register}
+                      errors={errors}
+                      required
+                      disabled={isSubmitting || isLoading}
+                    />
+                  </div>
+                  <div className="w-1/2">
+                    <TextInput
+                      name="advertisercampaignname"
+                      label="Advertiser Campaign Name"
+                      className="whitespace-nowrap"
+                      register={register}
+                      errors={errors}
+                      required
+                      disabled={isSubmitting || isLoading}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <OfferGroupStatus
-                toggle={toggle}
-                setToggle={setToggle}
-                showSelect={toggle}
-                selectedValue={offerGroupStatus}
-                onChange={(val: string) => setValue("offerGroupStatus", val)}
-              />
-
-              <Controller
-                name="tags"
-                control={control}
-                render={({ field }) => (
-                  <TagsInput
-                    tags={field.value || []}
-                    setTags={(newTags) => field.onChange(newTags)}
-                    inputValue={inputValue}
-                    labelSpan={true}
-                    setInputValue={setInputValue}
-                  />
-                )}
-              />
-
-              <MacroBuilder
-                label="Base Destination URL "
-                required
-                url={url}
-                setUrl={setUrl}
-              />
-
-              <TextInput
-                name="appidentifier"
-                label="App Identifier"
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
-              <TextInput
-                name="previewurl"
-                label="Preview URL"
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
-              <TextInput
-                name="projectid"
-                label="Project ID"
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
-
-              <TextAreaInput
-                name="internalnotes"
-                label="Internal Notes"
-                rows={4}
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
-              <div className="flex w-full gap-4">
-                <div className="w-1/2">
-                  <TextInput
-                    name="channels"
-                    label="Channels"
-                    register={register}
-                    errors={errors}
-                    required
-                    disabled={isSubmitting || isLoading}
-                  />
-                </div>
-                <div className="w-1/2">
-                  <TextInput
-                    name="advertisercampaignname"
-                    label="Advertiser Campaign Name"
-                    className="whitespace-nowrap"
-                    register={register}
-                    errors={errors}
-                    required
-                    disabled={isSubmitting || isLoading}
-                  />
-                </div>
-              </div>
-              <ExpiresDate
-                toggle={toggle}
-                setToggle={setToggle}
-                showSelect={toggle}
-                selectedValue={expiresDate}
-                onChange={(val: string) => setValue("expiresDate", val)}
-              />
-              <TextAreaInput
-                name="description"
-                label="Description"
-                rows={4}
-                register={register}
-                errors={errors}
-                required
-                disabled={isSubmitting || isLoading}
-              />
+                <ExpiresDate
+                  toggle={toggle}
+                  setToggle={setToggle}
+                  showSelect={toggle}
+                  selectedValue={expiresDate}
+                  onChange={(val: string) => setValue("expiresDate", val)}
+                />
+                <TextAreaInput
+                  name="description"
+                  label="Description"
+                  rows={4}
+                  register={register}
+                  errors={errors}
+                  required
+                  disabled={isSubmitting || isLoading}
+                />
+              </Container>
               <FormActions
                 isSubmitting={isSubmitting}
                 isLoading={isLoading}
