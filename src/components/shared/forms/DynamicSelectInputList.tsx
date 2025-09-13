@@ -81,16 +81,12 @@ const EventRow = memo<EventRowProps>(
     }, [onRemove, index]);
 
     return (
-      <div
-        className="flex gap-2  "
-        role="group"
-        aria-label={`Event ${index + 1}`}
-      >
+      <div className="flex " role="group" aria-label={`Event ${index + 1}`}>
         {/* Select field */}
-        <div className="w-1/2 mb-2">
+        <div className="w-1/2 ">
           <SingleSelect
             id={`${fieldName}.${index}.baseRevenueType`}
-            className="rounded-l-md border-l-none"
+            className="rounded-l-md border-l-none mt-0 z-10 "
             required
             placeholder={baseRevenueOptions[0]?.label}
             options={baseRevenueOptions}
@@ -110,11 +106,11 @@ const EventRow = memo<EventRowProps>(
         </div>
 
         {/* Input + Remove */}
-        <div className="w-1/2 flex my-4">
+        <div className="w-1/2 flex ">
           <input
             type="text"
             id={`${fieldName}.${index}.value`}
-            className="block w-full border-r-none h-[30px] px-1.5 my-4 border border-gray-300 rounded-l-md  focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm disabled:bg-gray-100"
+            className="block w-full border-l h-[30px] px-1.5 my-2 border-y border-gray-300   focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm disabled:bg-gray-100"
             placeholder={placeholder}
             value={value}
             onChange={handleValueChange}
@@ -130,7 +126,7 @@ const EventRow = memo<EventRowProps>(
           <button
             type="button"
             onClick={handleRemoveClick}
-            className="h-[30px] px-1.5 my-4 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors"
+            className="h-[30px] px-1.5 my-2 border border-red-500 bg-red-500 rounded-r-md text-white hover:bg-red-600 disabled:bg-red-300 transition-colors"
             disabled={isDisabled}
             aria-label={`Remove event ${index + 1}`}
           >

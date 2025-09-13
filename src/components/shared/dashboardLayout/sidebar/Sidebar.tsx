@@ -166,7 +166,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           } scrollbar-thin scrollbar-thumb-blue-950 scrollbar-track-gray-100`}
         >
           <nav aria-label="Primary navigation">
-            <ul className="space-y-2.5 relative lg:mb-10">
+            <ul className="space-y-2.5 relative lg:mb-10 text-[14px]">
               {menus?.map((menu) => (
                 <MenuItem
                   key={menu.key || menu.title}
